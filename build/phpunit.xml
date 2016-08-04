@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+	colors="true"
+	stopOnFailure="false"
+	bootstrap="../tests/bootstrap.php"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	checkForUnintentionallyCoveredCode="true"
+	>
+	<filter>
+		<whitelist>
+			<directory suffix=".php">../src/Aviat/Ion</directory>
+		</whitelist>
+	</filter>
+	<testsuites>
+		<testsuite name="Ion">
+			<directory>../tests/Ion</directory>
+		</testsuite>
+	</testsuites>
+	<logging>
+		<log type="coverage-html" target="coverage"/>
+		<log type="coverage-clover" target="logs/clover.xml"/>
+		<log type="coverage-crap4j" target="logs/crap4j.xml"/>
+		<log type="coverage-xml" target="logs/coverage" />
+		<log type="junit" target="logs/junit.xml" logIncompleteSkipped="false"/>
+	</logging>
+	<php>
+		<server name="HTTP_USER_AGENT" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393" />
+		<server name="HTTP_HOST" value="localhost" />
+		<server name="SERVER_NAME" value="localhost" />
+		<server name="REQUEST_URI" value="/" />
+		<server name="REQUEST_METHOD" value="GET" />
+	</php>
+</phpunit>
