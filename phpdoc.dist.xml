@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <phpdoc>
-	<title>Hummingbird Anime Client</title>
+	<title>Ion Framework</title>
 	<parser>
-		<target>docs</target>
+		<target>phpdoc</target>
 	</parser>
 	<transformer>
-		<target>docs</target>
+		<target>phpdoc</target>
 	</transformer>
 	<transformations>
 		<template name="clean" />

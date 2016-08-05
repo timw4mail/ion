@@ -12,6 +12,9 @@
 
 namespace Aviat\Ion;
 
+/**
+ * Exceptions thrown by the Json class
+ */
 class JsonException extends \InvalidArgumentException {
 
 }

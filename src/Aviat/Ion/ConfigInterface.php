@@ -12,6 +12,9 @@
 
 namespace Aviat\Ion;
 
+/**
+ * Standard interface for retrieving/setting configuration values
+ */
 interface ConfigInterface {
 	/**
 	 * Get a config value

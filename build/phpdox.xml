@@ -9,7 +9,7 @@
     <bootstrap />
 
     <!-- A phpDox project to process, you can have multiple projects in one config file -->
-    <project name="Hummingbird Anime Client" source="../src" workdir="phpdox/xml">
+    <project name="Ion Framework" source="../src" workdir="phpdox/xml">
         <!--  @name    - The name of the project -->
         <!--  @source  - The source directory of the application to process -->
         <!--  @workdir - The directory to store the xml data files in -->
@@ -99,16 +99,15 @@
 
                 <!-- PHPUnit Coverage XML -->
                 <source type="phpunit">
+                    <coverage path="coverage" />
                     <!-- <coverage path="clover.xml" />-->
                     <!--           @path - the directory where the xml code coverage report can be found -->
                     <!--<filter directory="${phpDox.project.source}" />-->
                     <!-- @directory - path of the phpunit config whitelist filter directory -->
                 </source>
-                <!--
                 <source type="phpunit">
                     <filter directory="${phpDox.project.source}" />
                 </source>
-                -->
 
             </enrich>
 

@@ -21,6 +21,8 @@ use Aviat\Ion\Cache\Driver\DriverInterface;
 class CacheManager implements CacheInterface {
 
 	/**
+	 * The storage backend adapter
+	 *
 	 * @var DriverInterface
 	 */
 	protected $driver;
