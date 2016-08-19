@@ -169,7 +169,6 @@ class RoboFile extends \Robo\Tasks
 	 */
 	public function prepare()
 	{
-		$this->clean();
 		array_map([$this, '_mkdir'], $this->taskDirs);
 	}
 
@@ -248,7 +247,7 @@ class RoboFile extends \Robo\Tasks
 			$task = $task->process("php -l {$file}");
 		}
 
-		$task->addToCollection($collection);
+		$collection->add($task);
 	}
 
 	/**
