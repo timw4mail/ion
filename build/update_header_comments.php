@@ -1,7 +1,7 @@
 <?php
 
 $ion_file_patterns = [
-	'src/Aviat/Ion/*.php'
+	'src/*.php'
 ];
 
 if ( ! function_exists('glob_recursive'))

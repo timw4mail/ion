@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . "/HttpViewTest.php";
+namespace Aviat\Ion\Tests\View;
 
 class HtmlViewTest extends HttpViewTest {
 
@@ -9,7 +9,7 @@ class HtmlViewTest extends HttpViewTest {
 	public function setUp()
 	{
 		parent::setUp();
-		$this->view = new TestHtmlView($this->container);
+		$this->view = new \TestHtmlView($this->container);
 	}
 
 	public function testRenderTemplate()

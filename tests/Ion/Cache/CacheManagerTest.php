@@ -1,15 +1,17 @@
 <?php
 
+namespace Aviat\Ion\Tests\Cache;
+
 use Aviat\Ion\Friend;
 use Aviat\Ion\Cache\CacheManager;
 
-class CacheManagerText extends Ion_TestCase {
+class CacheManagerTest extends \Ion_TestCase {
 
 	protected $cachedTime;
 
 	public function __call($name, $args)
 	{
-		return call_user_func_array($name, $args);
+		return \call_user_func_array($name, $args);
 	}
 
 	public function setUp()

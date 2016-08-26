@@ -1,9 +1,11 @@
 <?php
 
+namespace Aviat\Ion\Tests;
+
 use Aviat\Ion\Json;
 use Aviat\Ion\JsonException;
 
-class JsonTest extends Ion_TestCase {
+class JsonTest extends \Ion_TestCase {
 
 	public function testEncode()
 	{

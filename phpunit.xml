@@ -7,7 +7,7 @@
 >
     <filter>
         <whitelist>
-            <directory suffix=".php">src/Aviat/Ion</directory>
+            <directory suffix=".php">src/Ion</directory>
         </whitelist>
     </filter>
     <testsuites>

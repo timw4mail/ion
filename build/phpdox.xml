@@ -48,6 +48,7 @@
             <inheritance resolve="true">
                 <!--  @resolve - Flag to enable/disable resolving of inheritance -->
 
+
                 <!--  You can define multiple (external) dependencies to be included -->
                 <!--  <dependency  path="" -->
                 <!--    @path  - path to a directory containing an index.xml for a dependency project -->
@@ -84,11 +85,9 @@
                 </source>
 
                 <!-- PHP Code Sniffer findings -->
-                <!--
                 <source type="phpcs">
-                    <file name="logs/phpcs.xml" />
+                    <file name="phpcs.xml" />
                 </source>
-                -->
 
                 <!-- PHPMessDetector -->
                 <!--
@@ -99,7 +98,7 @@
 
                 <!-- PHPUnit Coverage XML -->
                 <source type="phpunit">
-                    <coverage path="coverage" />
+                    <coverage path="coverage/clover.xml" />
                     <!-- <coverage path="clover.xml" />-->
                     <!--           @path - the directory where the xml code coverage report can be found -->
                     <!--<filter directory="${phpDox.project.source}" />-->

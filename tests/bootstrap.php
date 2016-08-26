@@ -35,30 +35,13 @@ require 'Ion_TestCase.php';
 // Composer autoload
 require __DIR__ . '/../vendor/autoload.php';
 
-/**
- * Set up autoloaders
- *
- * @codeCoverageIgnore
- * @return void
- */
-spl_autoload_register(function ($class) {
-	$class_parts = explode('\\', $class);
-	$ns_path = realpath(__DIR__ . '/../src') . '/' . implode('/', $class_parts) . ".php";
-
-	if (file_exists($ns_path))
-	{
-		require_once($ns_path);
-		return;
-	}
-});
-
 // -----------------------------------------------------------------------------
 // Ini Settings
 // -----------------------------------------------------------------------------
 ini_set('session.use_cookies', 0);
 ini_set("session.use_only_cookies",0);
 ini_set("session.use_trans_sid",1);
-// Start session here to supress error about headers not sent
+// Start session here to surpress error about headers not sent
 session_start();
 
 // -----------------------------------------------------------------------------

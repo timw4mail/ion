@@ -20,8 +20,13 @@ if ( ! function_exists('glob_recursive'))
  *
  * @see http://robo.li/
  */
-class RoboFile extends \Robo\Tasks
-{
+class RoboFile extends \Robo\Tasks {
+
+	/**
+	 * Directories used by analysis tools
+	 *
+	 * @var array
+	 */
 	protected $taskDirs = [
 		'build/api',
 		'build/coverage',
@@ -41,6 +46,7 @@ class RoboFile extends \Robo\Tasks
 		$this->phploc(TRUE);
 		$this->dependencyReport();
 		$this->phpcpdReport();
+		$this->phpcsReport();
 	}
 
 	/**
@@ -136,6 +142,20 @@ class RoboFile extends \Robo\Tasks
 	}
 
 	/**
+	 * Run the phpcs tool
+	 */
+	public function phpcs()
+	{
+		$cmd_parts = [
+			'vendor/bin/phpcs',
+			'--standard=./build/phpcs.xml',
+			'--report=summary'
+		];
+
+		$this->_run($cmd_parts);
+	}
+
+	/**
 	 * Run the phploc tool
 	 *
 	 * @param bool $report - if true, generates reports instead of direct output
@@ -145,6 +165,7 @@ class RoboFile extends \Robo\Tasks
 		// Command for generating reports
 		$report_cmd_parts = [
 			'vendor/bin/phploc',
+			'--count-tests',
 			'--log-csv=build/logs/phploc.csv',
 			'--log-xml=build/logs/phploc.xml',
 			'src',
@@ -259,6 +280,19 @@ class RoboFile extends \Robo\Tasks
 			'vendor/bin/phpcpd',
 			'--log-pmd build/logs/pmd-cpd.xml',
 			'src'
+		];
+		$this->_run($cmd_parts);
+	}
+
+	/**
+	 * Generate code style report
+	 */
+	protected function phpcsReport()
+	{
+		$cmd_parts = [
+			'vendor/bin/phpcs',
+			'--standard=./build/phpcs.xml',
+			'--report-xml=./build/logs/phpcs.xml'
 		];
 		$this->_run($cmd_parts);
 	}

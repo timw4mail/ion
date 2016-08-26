@@ -4,7 +4,12 @@
 	"license":"MIT",
 	"autoload": {
 		"psr-4": {
-			"": "src/"
+			"Aviat\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Aviat\\Ion\\Tests\\": "tests/Ion/"
 		}
 	},
 	"require": {
@@ -13,8 +18,6 @@
 		"container-interop/container-interop": "1.*",
 		"danielstjules/stringy": "~2.1",
 		"guzzlehttp/guzzle": "6.*",
-		"monolog/monolog": "1.*",
-		"predis/predis": "1.1.*",
 		"psr/http-message": "~1.0",
 		"psr/log": "~1.0",
 		"zendframework/zend-diactoros": "1.3.*"
@@ -22,13 +25,22 @@
 	"require-dev": {
 		"pdepend/pdepend": "^2.2",
 		"sebastian/phpcpd": "^2.0",
-		"theseer/phpdox": "0.8.1.1",
+		"theseer/phpdox": "~0.9.0",
 		"phploc/phploc": "^3.0",
 		"phpmd/phpmd": "^2.4",
 		"phpunit/phpunit": "^5.4",
 		"robmorgan/phinx": "^0.6.4",
 		"humbug/humbug": "~1.0@dev",
-		"consolidation/robo": "~1.0@dev",
-		"henrikbjorn/lurker": "^1.1.0"
+		"consolidation/robo": "~1.0@RC",
+		"henrikbjorn/lurker": "^1.1.0",
+		"nikic/php-parser": "3.0.*@alpha",
+		"monolog/monolog": "1.*",
+		"predis/predis": "1.1.*",
+		"squizlabs/php_codesniffer": "^2.6"
+	},
+	"suggest": {
+		"monolog/monolog": "Provides implementation of psr/log",
+	  	"predis/predis": "Required for redis cache driver",
+		"zendframework/zend-diactoros": "Provides implementation of psr/http-message"
 	}
 }

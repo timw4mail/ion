@@ -4,6 +4,7 @@
  */
 
 use Aviat\Ion\Enum;
+use Aviat\Ion\Exception\DoubleRenderException;
 use Aviat\Ion\Friend;
 use Aviat\Ion\Transformer\AbstractTransformer;
 use Aviat\Ion\View;
@@ -70,7 +71,7 @@ class TestTransformer extends AbstractTransformer {
 }
 
 trait MockViewOutputTrait {
-	protected function output() {
+	/*protected function output() {
 		$reflect = new ReflectionClass($this);
 		$properties = $reflect->getProperties();
 		$props = [];
@@ -88,31 +89,69 @@ trait MockViewOutputTrait {
 			$friend->__set($name, $val);
 		}
 
-		$friend->output();
+		//$friend->output();
+	}*/
+
+	public function send()
+	{
+		if ($this->hasRendered)
+		{
+			throw new DoubleRenderException();
+		}
+
+		$this->hasRendered = TRUE;
 	}
 }
 
 class TestView extends View {
-	public function send() {}
-	protected function output()
+	public function send()
 	{
-		/*$content =& $this->response->content;
-		$content->set($this->output);
-		$content->setType($this->contentType);
-		$content->setCharset('utf-8');*/
+		if ($this->hasRendered)
+		{
+			throw new DoubleRenderException();
+		}
+
+		$this->hasRendered = TRUE;
 	}
+	public function output() {}
 }
 
 class TestHtmlView extends HtmlView {
-	use MockViewOutputTrait;
+	protected function output()
+	{
+		if ($this->hasRendered)
+		{
+			throw new DoubleRenderException();
+		}
+
+		$this->hasRendered = TRUE;
+	}
 }
 
 class TestHttpView extends HttpView {
-	use MockViewOutputTrait;
+	protected function output()
+	{
+		if ($this->hasRendered)
+		{
+			throw new DoubleRenderException();
+		}
+
+		$this->hasRendered = TRUE;
+	}
 }
 
 class TestJsonView extends JsonView {
 	public function __destruct() {}
+
+	protected function output()
+	{
+		if ($this->hasRendered)
+		{
+			throw new DoubleRenderException();
+		}
+
+		$this->hasRendered = TRUE;
+	}
 }
 
 // -----------------------------------------------------------------------------
