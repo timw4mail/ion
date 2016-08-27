@@ -44,9 +44,9 @@ class RoboFile extends \Robo\Tasks {
 		$this->prepare();
 		$this->lint();
 		$this->phploc(TRUE);
+		$this->phpcs(TRUE);
 		$this->dependencyReport();
 		$this->phpcpdReport();
-		$this->phpcsReport();
 	}
 
 	/**
@@ -143,14 +143,23 @@ class RoboFile extends \Robo\Tasks {
 
 	/**
 	 * Run the phpcs tool
+	 *
+	 * @param bool $report - if true, generates reports instead of direct output
 	 */
-	public function phpcs()
+	public function phpcs($report = FALSE)
 	{
-		$cmd_parts = [
+		$report_cmd_parts = [
 			'vendor/bin/phpcs',
 			'--standard=./build/phpcs.xml',
-			'--report=summary'
+			'--report-checkstyle=./build/logs/phpcs.xml',
 		];
+
+		$normal_cmd_parts = [
+			'vendor/bin/phpcs',
+			'--standard=./build/phpcs.xml',
+		];
+
+		$cmd_parts = ($report) ? $report_cmd_parts : $normal_cmd_parts;
 
 		$this->_run($cmd_parts);
 	}
@@ -285,20 +294,7 @@ class RoboFile extends \Robo\Tasks {
 	}
 
 	/**
-	 * Generate code style report
-	 */
-	protected function phpcsReport()
-	{
-		$cmd_parts = [
-			'vendor/bin/phpcs',
-			'--standard=./build/phpcs.xml',
-			'--report-xml=./build/logs/phpcs.xml'
-		];
-		$this->_run($cmd_parts);
-	}
-
-	/**
-	 * Short cut for joining an array of command arguments
+	 * Shortcut for joining an array of command arguments
 	 * and then running it
 	 *
 	 * @param array $cmd_parts - command arguments

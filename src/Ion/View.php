@@ -4,10 +4,14 @@
  *
  * Building blocks for web development
  *
+ * PHP version 5.6
+ *
  * @package     Ion
- * @author      Timothy J. Warren
- * @copyright   Copyright (c) 2015 - 2016
- * @license     MIT
+ * @author      Timothy J. Warren <tim@timshomepage.net>
+ * @copyright   2015 - 2016 Timothy J. Warren
+ * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @version     1.0.0
+ * @link        https://git.timshomepage.net/timw4mail/ion
  */
 
 namespace Aviat\Ion;
@@ -16,12 +20,13 @@ use Psr\Http\Message\ResponseInterface;
 
 use Aviat\Ion\Di\ContainerInterface;
 use Aviat\Ion\Exception\DoubleRenderException;
-use Aviat\Ion\Type\StringType;
 
 /**
  * Base view response class
  */
-abstract class View /* partially */ implements ViewInterface {
+abstract class View
+	// partially
+	implements ViewInterface {
 
 	use Di\ContainerAware;
 	use StringWrapper;
@@ -64,7 +69,11 @@ abstract class View /* partially */ implements ViewInterface {
 	}
 
 	/**
-	 * @inheritdoc
+	 * Return rendered output as string. Renders the view,
+	 * and any attempts to call again will result in a DoubleRenderException
+	 *
+	 * @throws DoubleRenderException
+	 * @return string
 	 */
 	public function __toString()
 	{
@@ -77,7 +86,10 @@ abstract class View /* partially */ implements ViewInterface {
 	}
 
 	/**
-	 * @inheritdoc
+	 * Set the output string
+	 *
+	 * @param string $string
+	 * @return ViewInterface
 	 */
 	public function setOutput($string)
 	{
@@ -87,7 +99,10 @@ abstract class View /* partially */ implements ViewInterface {
 	}
 
 	/**
-	 * @inheritdoc
+	 * Append additional output.
+	 *
+	 * @param string $string
+	 * @return ViewInterface
 	 */
 	public function appendOutput($string)
 	{
@@ -95,7 +110,10 @@ abstract class View /* partially */ implements ViewInterface {
 	}
 
 	/**
-	 * @inheritdoc
+	 * Get the current output as a string. Does not
+	 * render view or send headers.
+	 *
+	 * @return string
 	 */
 	public function getOutput()
 	{

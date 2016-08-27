@@ -4,10 +4,14 @@
  *
  * Building blocks for web development
  *
+ * PHP version 5.6
+ *
  * @package     Ion
- * @author      Timothy J. Warren
- * @copyright   Copyright (c) 2015 - 2016
- * @license     MIT
+ * @author      Timothy J. Warren <tim@timshomepage.net>
+ * @copyright   2015 - 2016 Timothy J. Warren
+ * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @version     1.0.0
+ * @link        https://git.timshomepage.net/timw4mail/ion
  */
 
 namespace Aviat\Ion\Di;
@@ -160,7 +164,7 @@ class Container implements ContainerInterface {
 		$uses_trait = in_array($trait_name, class_uses($obj));
 		$implements_interface = in_array($interface_name, class_implements($obj));
 
-		if ($uses_trait || $implements_interface)
+		if ($uses_trait OR $implements_interface)
 		{
 			$obj->setContainer($this);
 		}

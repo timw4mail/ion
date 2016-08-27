@@ -4,10 +4,14 @@
  *
  * Building blocks for web development
  *
+ * PHP version 5.6
+ *
  * @package     Ion
- * @author      Timothy J. Warren
- * @copyright   Copyright (c) 2015 - 2016
- * @license     MIT
+ * @author      Timothy J. Warren <tim@timshomepage.net>
+ * @copyright   2015 - 2016 Timothy J. Warren
+ * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @version     1.0.0
+ * @link        https://git.timshomepage.net/timw4mail/ion
  */
 
 namespace Aviat\Ion\View;
@@ -68,7 +72,11 @@ class HttpView extends BaseView {
 	}
 
 	/**
-	 * @inheritdoc
+	 * Send output to client. As it renders the view,
+	 * any attempt to call again will result in a DoubleRenderException.
+	 *
+	 * @throws DoubleRenderException
+	 * @return void
 	 */
 	public function send()
 	{

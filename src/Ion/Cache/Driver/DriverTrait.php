@@ -4,10 +4,14 @@
  *
  * Building blocks for web development
  *
- * @package	 Ion
- * @author	  Timothy J. Warren
- * @copyright   Copyright (c) 2015 - 2016
- * @license	 MIT
+ * PHP version 5.6
+ *
+ * @package     Ion
+ * @author      Timothy J. Warren <tim@timshomepage.net>
+ * @copyright   2015 - 2016 Timothy J. Warren
+ * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @version     1.0.0
+ * @link        https://git.timshomepage.net/timw4mail/ion
  */
 
 namespace Aviat\Ion\Cache\Driver;
@@ -22,8 +26,10 @@ trait DriverTrait  {
 
 	/**
 	 * Key prefix for key / value cache stores
+	 *
+	 * @var string
 	 */
-	protected static $CACHE_KEY_PREFIX = "hbac:cache:";
+	protected static $CACHE_KEY_PREFIX = "aviat:ion:cache:";
 
 	/**
 	 * Set key prefix for cache drivers that have global keys

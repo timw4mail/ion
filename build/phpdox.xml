@@ -85,7 +85,7 @@
                 </source>
 
                 <!-- PHP Code Sniffer findings -->
-                <source type="phpcs">
+                <source type="checkstyle">
                     <file name="phpcs.xml" />
                 </source>
 

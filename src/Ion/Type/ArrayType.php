@@ -4,10 +4,14 @@
  *
  * Building blocks for web development
  *
+ * PHP version 5.6
+ *
  * @package     Ion
- * @author      Timothy J. Warren
- * @copyright   Copyright (c) 2015 - 2016
- * @license     MIT
+ * @author      Timothy J. Warren <tim@timshomepage.net>
+ * @copyright   2015 - 2016 Timothy J. Warren
+ * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @version     1.0.0
+ * @link        https://git.timshomepage.net/timw4mail/ion
  */
 
 namespace Aviat\Ion\Type;
@@ -214,7 +218,7 @@ class ArrayType {
 
 		foreach ($key as $level)
 		{
-			if (empty($pos) || ! is_array($pos))
+			if (empty($pos) OR ! is_array($pos))
 			{
 				// Directly returning a NULL value here will
 				// result in a reference error. This isn't
