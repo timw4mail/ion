@@ -61,7 +61,7 @@ interface ContainerInterface extends InteropInterface {
 	 * Add a logger to the Container
 	 *
 	 * @param LoggerInterface $logger
-	 * @param string          $id    The logger 'channel'
+	 * @param string          $id     The logger 'channel'
 	 * @return Container
 	 */
 	public function setLogger(LoggerInterface $logger, $id = 'default');

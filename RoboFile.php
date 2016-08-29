@@ -28,11 +28,23 @@ class RoboFile extends \Robo\Tasks {
 	 * @var array
 	 */
 	protected $taskDirs = [
-		'build/api',
-		'build/coverage',
 		'build/logs',
 		'build/pdepend',
 		'build/phpdox',
+	];
+
+	/**
+	 * Directories to remove with the clean task
+	 *
+	 * @var array
+	 */
+	protected $cleanDirs = [
+		'coverage',
+		'docs',
+		'phpdoc',
+		'build/logs',
+		'build/phpdox',
+		'build/pdepend'
 	];
 
 
@@ -72,8 +84,17 @@ class RoboFile extends \Robo\Tasks {
 			@unlink($file);
 		}, $cleanFiles);
 
-		$this->_cleanDir($this->taskDirs);
-		$this->_deleteDir($this->taskDirs);
+		// So the task doesn't complain,
+		// make any 'missing' dirs to cleanup
+		array_map(function ($dir) {
+			if ( ! is_dir($dir))
+			{
+				`mkdir -p {$dir}`;
+			}
+		}, $this->cleanDirs);
+
+		$this->_cleanDir($this->cleanDirs);
+		$this->_deleteDir($this->cleanDirs);
 	}
 
 	/**

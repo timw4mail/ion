@@ -12,26 +12,27 @@ test:5.6:
     before_script:
       - bash build/docker_install.sh > /dev/null
       - curl -sS https://getcomposer.org/installer | php
-      - php composer.phar install --no-dev
+      - php composer.phar update
+      - php composer.phar install
     image: php:5.6
     script:
-      - phpunit -c build
+      - vendor/bin/phpunit --coverage-text --colors=never
 
 test:7:
     before_script:
       - bash build/docker_install.sh > /dev/null
       - curl -sS https://getcomposer.org/installer | php
-      - php composer.phar install --no-dev
+      - php composer.phar update
+      - php composer.phar install
     image: php:7
     script:
-      - phpunit -c build
+      - vendor/bin/phpunit --coverage-text --colors=never
 
 test:hhvm:
     before_script:
       - /usr/local/bin/composer self-update
-      - curl -Lo /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
-      - chmod +x /usr/local/bin/phpunit
-      - composer install --no-dev
+      - composer update
+      - composer install
     image: 51systems/docker-gitlab-ci-runner-hhvm
     script:
-      - phpunit -c build
+      - vendor/bin/phpunit --coverage-text --colors=never

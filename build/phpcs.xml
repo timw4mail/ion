@@ -36,6 +36,7 @@
 	<rule ref="PEAR.Commenting.FunctionComment">
 		<!-- Exclude this sniff because it doesn't understand multiple types -->
 		<exclude name="PEAR.Commenting.FunctionComment.MissingParamComment" />
+		<exclude name="PEAR.Commenting.FunctionComment.SpacingAfterParamType" />
 	</rule>
 
 	<!-- Use warnings for docblock comments for files and variables, since nothing is cleary explained -->

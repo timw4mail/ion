@@ -96,8 +96,8 @@ class Container implements ContainerInterface {
 	/**
 	 * Get a new instance of the specified item
 	 *
-	 * @param string $id - Identifier of the entry to look for.
-	 * @param array [$args] - Optional arguments for the factory callable
+	 * @param string $id   - Identifier of the entry to look for.
+	 * @param array $args - Optional arguments for the factory callable
 	 * @throws NotFoundException - No entry was found for this identifier.
 	 * @throws ContainerException - Error while retrieving the entry.
 	 * @return mixed
@@ -182,7 +182,7 @@ class Container implements ContainerInterface {
 	 * Add a logger to the Container
 	 *
 	 * @param LoggerInterface $logger
-	 * @param string          $id    The logger 'channel'
+	 * @param string          $id     The logger 'channel'
 	 * @return ContainerInterface
 	 */
 	public function setLogger(LoggerInterface $logger, $id = 'default')
