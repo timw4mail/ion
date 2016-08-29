@@ -12,11 +12,6 @@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
 
-if (class_exists('CodeIgniter_Sniffs_Files_AbstractClosingCommentSniff', true) === false) {
-    $error = 'Class CodeIgniter_Sniffs_Files_AbstractClosingCommentSniff not found';
-    throw new PHP_CodeSniffer_Exception($error);
-}
-
 /**
  * CodeIgniter_Sniffs_Files_ClosingLocationCommentSniff.
  *
@@ -45,7 +40,6 @@ if (class_exists('CodeIgniter_Sniffs_Files_AbstractClosingCommentSniff', true) =
 
 namespace CodeIgniter\Sniffs\Files;
 
-use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Common;
 
