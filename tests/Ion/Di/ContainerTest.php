@@ -1,5 +1,7 @@
 <?php
 
+namespace Aviat\Ion\Tests\Di;
+
 use Aviat\Ion\Di\Container;
 use Aviat\Ion\Di\Exception\ContainerException;
 use Monolog\Logger;
@@ -7,7 +9,7 @@ use Monolog\Handler\TestHandler;
 use Monolog\Handler\NullHandler;
 
 
-class ContainerTest extends Ion_TestCase {
+class ContainerTest extends \Ion_TestCase {
 
 	public function setUp()
 	{

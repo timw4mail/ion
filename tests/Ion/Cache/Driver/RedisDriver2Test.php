@@ -1,11 +1,11 @@
 <?php
 
-require_once('CacheDriverBase.php');
+namespace Aviat\Ion\Tests\Cache\Driver;
 
 use Aviat\Ion\Config;
 use Aviat\Ion\Cache\Driver\RedisDriver;
 
-class CacheRedisDriverTestTwo extends Ion_TestCase {
+class CacheRedisDriverTestTwo extends \Ion_TestCase {
 	use CacheDriverBase;
 
 	protected $driver;

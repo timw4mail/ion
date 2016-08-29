@@ -1,8 +1,10 @@
 <?php
 
+namespace Aviat\Ion\Tests\Exception;
+
 use Aviat\Ion\Exception\DoubleRenderException;
 
-class DoubleRenderExceptionTest extends Ion_TestCase {
+class DoubleRenderExceptionTest extends \Ion_TestCase {
 
 	public function testDefaultMessage()
 	{

@@ -1,8 +1,10 @@
 <?php
 
+namespace Aviat\Ion\Tests;
+
 use Aviat\Ion\Config;
 
-class ConfigTest extends Ion_TestCase {
+class ConfigTest extends \Ion_TestCase {
 
 	public function setUp()
 	{
@@ -30,14 +32,14 @@ class ConfigTest extends Ion_TestCase {
 		$this->config->set(['apple', 'sauce', 'is'], 'great');
 		$apple = $this->config->get('apple');
 		$this->assertEquals('great', $apple['sauce']['is'], "Config value not set correctly");
-		
+
 		$this->assertEquals('great', $this->config->get(['apple', 'sauce', 'is']), "Array argument get for config failed.");
 
 	}
 
 	public function testConfigBadSet()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		$this->config->set(NULL, FALSE);
 	}
 

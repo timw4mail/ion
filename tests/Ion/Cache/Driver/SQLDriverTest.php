@@ -1,15 +1,15 @@
 <?php
 
-require_once('CacheDriverBase.php');
+namespace Aviat\Ion\Tests\Cache\Driver;
 
 use Aviat\Ion\Friend;
 use Aviat\Ion\Cache\Driver\SQLDriver;
 
-class CacheSQLDriverTest extends Ion_TestCase {
+class CacheSQLDriverTest extends \Ion_TestCase {
 	use CacheDriverBase;
-	
+
 	protected $driver;
-	
+
 	public function setUp()
 	{
 		parent::setUp();

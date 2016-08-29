@@ -1,15 +1,17 @@
 <?php
 
-class AbstractTransformerTest extends Ion_TestCase {
-	
+namespace Aviat\Ion\Tests\Transformer;
+
+class AbstractTransformerTest extends \Ion_TestCase {
+
 	protected $transformer;
 
 
 	public function setUp()
 	{
-		$this->transformer = new TestTransformer();
+		$this->transformer = new \TestTransformer();
 	}
-	
+
 	public function dataTransformCollection()
 	{
 		return [
@@ -67,13 +69,13 @@ class AbstractTransformerTest extends Ion_TestCase {
 			],
 		];
 	}
-	
+
 	public function testTransform()
 	{
 		$data = $this->dataTransformCollection();
 		$original = $data['object']['original'][0];
 		$expected = $data['object']['expected'][0];
-		
+
 		$actual = $this->transformer->transform($original);
 		$this->assertEquals($expected, $actual);
 	}

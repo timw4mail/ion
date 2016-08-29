@@ -1,7 +1,9 @@
 <?php
 
-class ArrayTypeTest extends Ion_TestCase {
-	use Aviat\Ion\ArrayWrapper;
+namespace Aviat\Ion\Tests\Type;
+
+class ArrayTypeTest extends \Ion_TestCase {
+	use \Aviat\Ion\ArrayWrapper;
 
 
 	public function setUp()
@@ -124,7 +126,9 @@ class ArrayTypeTest extends Ion_TestCase {
 	{
 		$obj = $this->arr([]);
 
-		$this->setExpectedException('InvalidArgumentException', "Method 'foo' does not exist");
+		$this->expectException('InvalidArgumentException');
+		$this->expectExceptionMessage("Method 'foo' does not exist");
+
 		$obj->foo();
 	}
 

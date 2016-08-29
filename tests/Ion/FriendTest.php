@@ -1,13 +1,15 @@
 <?php
 
+namespace Aviat\Ion\Tests;
+
 use Aviat\Ion\Friend;
 
-class FriendTest extends Ion_TestCase {
+class FriendTest extends \Ion_TestCase {
 
 	public function setUp()
 	{
 		parent::setUp();
-		$obj = new FriendTestClass();
+		$obj = new \FriendTestClass();
 		$this->friend = new Friend($obj);
 	}
 
@@ -26,7 +28,7 @@ class FriendTest extends Ion_TestCase {
 	public function testGet()
 	{
 		$this->assertEquals(356, $this->friend->protected);
-		$this->assertNull($this->friend->foo); // Return NULL for non-existend properties
+		$this->assertNull($this->friend->foo); // Return NULL for non-existent properties
 		$this->assertEquals(47, $this->friend->parentProtected);
 		$this->assertEquals(84, $this->friend->grandParentProtected);
 		$this->assertNull($this->friend->parentPrivate); // Can't get a parent's privates
@@ -43,14 +45,17 @@ class FriendTest extends Ion_TestCase {
 
 	public function testBadInvokation()
 	{
-		$this->setExpectedException('InvalidArgumentException', 'Friend must be an object');
+		$this->expectException('InvalidArgumentException');
+		$this->expectExceptionMessage('Friend must be an object');
 
 		$friend = new Friend('foo');
 	}
 
 	public function testBadMethod()
 	{
-		$this->setExpectedException('BadMethodCallException', "Method 'foo' does not exist");
+		$this->expectException('BadMethodCallException');
+		$this->expectExceptionMessage("Method 'foo' does not exist");
+
 		$this->friend->foo();
 	}
 }

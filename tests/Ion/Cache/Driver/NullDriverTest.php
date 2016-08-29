@@ -1,10 +1,10 @@
 <?php
 
-require_once('CacheDriverBase.php');
+namespace Aviat\Ion\Tests\Cache\Driver;
 
 use Aviat\Ion\Cache\Driver\NullDriver;
 
-class CacheNullDriverTest extends Ion_TestCase {
+class CacheNullDriverTest extends \Ion_TestCase {
 	use CacheDriverBase;
 
 	protected $driver;
