@@ -16,43 +16,61 @@
 
 namespace Aviat\Ion\Di;
 
+use Interop\Container\ContainerInterface as InteropInterface;
 use Psr\Log\LoggerInterface;
 
 /**
  * Interface for the Dependency Injection Container
  */
-interface ContainerInterface extends \Interop\Container\ContainerInterface {
+interface ContainerInterface extends InteropInterface {
 
 	/**
-	 * Add a value to the container
+	 * Add a factory to the container
 	 *
-	 * @param string $key
-	 * @param mixed  $value
+	 * @param string $id
+	 * @param Callable  $value - a factory callable for the item
 	 * @return ContainerInterface
 	 */
-	public function set($key, $value);
+	public function set($id, Callable $value);
+
+	/**
+	 * Set a specific instance in the container for an existing factory
+	 *
+	 * @param string $id
+	 * @param mixed $value
+	 * @return ContainerInterface
+	 */
+	public function setInstance($id, $value);
+
+	/**
+	 * Get a new instance of the specified item
+	 *
+	 * @param string $id
+	 * @return mixed
+	 */
+	public function getNew($id);
 
 	/**
 	 * Determine whether a logger channel is registered
-	 * @param  string $key The logger channel
+	 * @param  string $id The logger channel
 	 * @return boolean
 	 */
-	public function hasLogger($key = 'default');
+	public function hasLogger($id = 'default');
 
 	/**
 	 * Add a logger to the Container
 	 *
 	 * @param LoggerInterface $logger
-	 * @param string          $key    The logger 'channel'
+	 * @param string          $id    The logger 'channel'
 	 * @return Container
 	 */
-	public function setLogger(LoggerInterface $logger, $key = 'default');
+	public function setLogger(LoggerInterface $logger, $id = 'default');
 
 	/**
 	 * Retrieve a logger for the selected channel
 	 *
-	 * @param  string $key The logger to retreive
+	 * @param  string $id The logger to retreive
 	 * @return LoggerInterface|null
 	 */
-	public function getLogger($key = 'default');
+	public function getLogger($id = 'default');
 }

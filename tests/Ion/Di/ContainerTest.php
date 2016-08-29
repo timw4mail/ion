@@ -8,8 +8,21 @@ use Monolog\Logger;
 use Monolog\Handler\TestHandler;
 use Monolog\Handler\NullHandler;
 
+class FooTest {
+
+	public $item;
+
+	public function __construct($item) {
+		$this->item = $item;
+	}
+}
+
+class FooTest2 {
+	use \Aviat\Ion\Di\ContainerAware;
+}
 
 class ContainerTest extends \Ion_TestCase {
+
 
 	public function setUp()
 	{
@@ -53,6 +66,94 @@ class ContainerTest extends \Ion_TestCase {
 		}
 	}
 
+	/**
+	 * @dataProvider dataGetWithException
+	 */
+	public function testGetNewWithException($id, $exception, $message)
+	{
+		try
+		{
+			$this->container->getNew($id);
+		}
+		catch(ContainerException $e)
+		{
+			$this->assertInstanceOf($exception, $e);
+			$this->assertEquals($message, $e->getMessage());
+		}
+	}
+
+	public function dataSetInstanceWithException()
+	{
+		return [
+			'Non-existent id' => [
+				'id' => 'foo',
+				'exception' => 'Aviat\Ion\Di\Exception\NotFoundException',
+				'message' => "Factory 'foo' does not exist in container. Set that first.",
+			],
+			'Non-existent id 2' => [
+				'id' => 'foobarbaz',
+				'exception' => 'Aviat\Ion\Di\Exception\NotFoundException',
+				'message' => "Factory 'foobarbaz' does not exist in container. Set that first.",
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider dataSetInstanceWithException
+	 */
+	public function testSetInstanceWithException($id, $exception, $message)
+	{
+		try
+		{
+			$this->container->setInstance($id, NULL);
+		}
+		catch(ContainerException $e)
+		{
+			$this->assertInstanceOf($exception, $e);
+			$this->assertEquals($message, $e->getMessage());
+		}
+	}
+
+	public function testGetNew()
+	{
+		$this->container->set('footest', function($item) {
+			return new FooTest($item);
+		});
+
+		// Check that the item is the container, if called without arguments
+		$footest1 = $this->container->getNew('footest');
+		$this->assertInstanceOf('Aviat\Ion\Di\ContainerInterface', $footest1->item);
+
+		$footest2 = $this->container->getNew('footest', ['Test String']);
+		$this->assertEquals('Test String', $footest2->item);
+	}
+
+	public function testSetContainerInInstance()
+	{
+		$this->container->set('footest2', function() {
+			return new FooTest2();
+		});
+
+		$footest2 = $this->container->get('footest2');
+		$this->assertEquals($this->container, $footest2->getContainer());
+	}
+
+	public function testGetNewReturnCallable()
+	{
+		$this->container->set('footest', function($item) {
+			return function() use ($item) {
+				return $item;
+			};
+		});
+
+		// Check that the item is the container, if called without arguments
+		$footest1 = $this->container->getNew('footest');
+		$this->assertInstanceOf('Aviat\Ion\Di\ContainerInterface', $footest1());
+
+		$footest2 = $this->container->getNew('footest', ['Test String']);
+		$this->assertEquals('Test String', $footest2());
+	}
+
 	public function testGetSet()
 	{
 		$container = $this->container->set('foo', function() {
@@ -61,6 +162,8 @@ class ContainerTest extends \Ion_TestCase {
 
 		$this->assertInstanceOf('Aviat\Ion\Di\Container', $container);
 		$this->assertInstanceOf('Aviat\Ion\Di\ContainerInterface', $container);
+
+		// The factory returns a callable
 		$this->assertTrue(is_callable($container->get('foo')));
 	}
 

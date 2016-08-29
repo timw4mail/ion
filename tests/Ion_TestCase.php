@@ -29,13 +29,13 @@ class Ion_TestCase extends PHPUnit_Framework_TestCase {
 	protected static $staticContainer;
 	protected static $session_handler;
 
-	public static function setUpBeforeClass()
+	/*public static function setUpBeforeClass()
 	{
 		// Use mock session handler
 		$session_handler = new TestSessionHandler();
 		session_set_save_handler($session_handler, TRUE);
 		self::$session_handler = $session_handler;
-	}
+	}*/
 
 	public function setUp()
 	{
@@ -86,7 +86,12 @@ class Ion_TestCase extends PHPUnit_Framework_TestCase {
 		// Set up DI container
 		$di = require('di.php');
 		$container = $di($config_array);
-		$container->set('session-handler', self::$session_handler);
+		$container->set('session-handler', function() {
+			// Use mock session handler
+			$session_handler = new TestSessionHandler();
+			session_set_save_handler($session_handler, TRUE);
+			return $session_handler;
+		});
 
 		$this->container = $container;
 	}
@@ -111,7 +116,7 @@ class Ion_TestCase extends PHPUnit_Framework_TestCase {
 			['Zend\Diactoros\ServerRequestFactory', 'fromGlobals'],
 			array_merge($default, $supers)
 		);
-		$this->container->set('request', $request);
+		$this->container->setInstance('request', $request);
 	}
 }
 // End of Ion_TestCase.php
