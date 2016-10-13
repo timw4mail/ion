@@ -1,10 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Ion
  *
  * Building blocks for web development
  *
- * PHP version 5.6
+ * PHP version 7
  *
  * @package     Ion
  * @author      Timothy J. Warren <tim@timshomepage.net>
