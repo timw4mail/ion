@@ -18,8 +18,9 @@ namespace Aviat\Ion\Tests\Cache;
 
 use Aviat\Ion\Friend;
 use Aviat\Ion\Cache\CacheManager;
+use Aviat\Ion\Tests\Ion_TestCase;
 
-class CacheManagerTest extends \Ion_TestCase {
+class CacheManagerTest extends Ion_TestCase {
 
 	protected $cachedTime;
 

@@ -16,10 +16,9 @@
 
 namespace Aviat\Ion\Tests\Di;
 
-use Aviat\Ion\Di\Container;
-use Aviat\Ion\Di\ContainerAware;
-use Aviat\Ion\Di\ContainerInterface;
+use Aviat\Ion\Di\{Container, ContainerAware, ContainerInterface};
 use Aviat\Ion\Di\Exception\ContainerException;
+use Aviat\Ion\Tests\Ion_TestCase;
 
 class Aware {
 	use ContainerAware;
@@ -31,7 +30,7 @@ class Aware {
 }
 
 
-class ContainerAwareTest extends \Ion_TestCase {
+class ContainerAwareTest extends Ion_TestCase {
 
 	public function setUp()
 	{

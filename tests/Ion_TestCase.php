@@ -1,14 +1,16 @@
 <?php
 
+namespace Aviat\Ion\Tests;
+
 use Aura\Web\WebFactory;
+use Aviat\Ion\Json;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Zend\Diactoros\ServerRequestFactory;
 use Zend\Diactoros\Response as HttpResponse;
-
-use Aviat\Ion\Json;
 
 define('ROOT_DIR', realpath(__DIR__ . '/../') . '/');
 define('SRC_DIR', ROOT_DIR . 'src/');
@@ -18,7 +20,7 @@ define('TEST_VIEW_DIR', __DIR__ . '/test_views');
 /**
  * Base class for TestCases
  */
-class Ion_TestCase extends PHPUnit_Framework_TestCase {
+class Ion_TestCase extends TestCase {
 	// Test directory constants
 	const ROOT_DIR = ROOT_DIR;
 	const SRC_DIR = SRC_DIR;
@@ -102,7 +104,7 @@ class Ion_TestCase extends PHPUnit_Framework_TestCase {
 	 * @param array $supers
 	 * @return void
 	 */
-	public function setSuperGlobals($supers = [])
+	public function setSuperGlobals(array $supers = [])
 	{
 		$default = [
 			'_SERVER' => $_SERVER,

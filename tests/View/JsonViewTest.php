@@ -17,6 +17,7 @@
 namespace Aviat\Ion\Tests\View;
 
 use Aviat\Ion\Friend;
+use Aviat\Ion\Tests\TestJsonView;
 
 class JsonViewTest extends HttpViewTest {
 
@@ -24,14 +25,14 @@ class JsonViewTest extends HttpViewTest {
 	{
 		parent::setUp();
 
-		$this->view = new \TestJsonView($this->container);
+		$this->view = new TestJsonView($this->container);
 		$this->friend = new Friend($this->view);
 	}
 
 	public function testSetOutputJSON()
 	{
 		// Extend view class to remove destructor which does output
-		$view = new \TestJsonView($this->container);
+		$view = new TestJsonView($this->container);
 
 		// Json encode non-string
 		$content = ['foo' => 'bar'];
@@ -43,7 +44,7 @@ class JsonViewTest extends HttpViewTest {
 	public function testSetOutput()
 	{
 		// Directly set string
-		$view = new \TestJsonView($this->container);
+		$view = new TestJsonView($this->container);
 		$content = '{}';
 		$expected = '{}';
 		$view->setOutput($content);

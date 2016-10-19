@@ -4,7 +4,7 @@ namespace Aviat\Ion\Tests;
 
 use Aviat\Ion\Config;
 
-class ConfigTest extends \Ion_TestCase {
+class ConfigTest extends Ion_TestCase {
 
 	public function setUp()
 	{

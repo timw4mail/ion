@@ -17,8 +17,9 @@
 namespace Aviat\Ion\Tests\Exception;
 
 use Aviat\Ion\Exception\DoubleRenderException;
+use Aviat\Ion\Tests\Ion_TestCase;
 
-class DoubleRenderExceptionTest extends \Ion_TestCase {
+class DoubleRenderExceptionTest extends Ion_TestCase {
 
 	public function testDefaultMessage()
 	{

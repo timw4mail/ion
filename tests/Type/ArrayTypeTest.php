@@ -16,9 +16,11 @@
 
 namespace Aviat\Ion\Tests\Type;
 
-class ArrayTypeTest extends \Ion_TestCase {
-	use \Aviat\Ion\ArrayWrapper;
+use Aviat\Ion\ArrayWrapper;
+use Aviat\Ion\Tests\Ion_TestCase;
 
+class ArrayTypeTest extends Ion_TestCase {
+	use ArrayWrapper;
 
 	public function setUp()
 	{

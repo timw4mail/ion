@@ -17,8 +17,9 @@
 namespace Aviat\Ion\Tests\Cache\Driver;
 
 use Aviat\Ion\Cache\Driver\NullDriver;
+use Aviat\Ion\Tests\Ion_TestCase;
 
-class CacheNullDriverTest extends \Ion_TestCase {
+class CacheNullDriverTest extends Ion_TestCase {
 	use CacheDriverBase;
 
 	protected $driver;

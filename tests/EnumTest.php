@@ -3,9 +3,8 @@
 namespace Aviat\Ion\Tests;
 
 use Aviat\Ion\Enum;
-use TestEnum;
 
-class EnumTest extends \Ion_TestCase {
+class EnumTest extends Ion_TestCase {
 
 	protected $expectedConstList = [
 		'FOO' => 'bar',

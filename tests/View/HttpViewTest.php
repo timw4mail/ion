@@ -18,8 +18,10 @@ namespace Aviat\Ion\Tests\View;
 
 use Aviat\Ion\Friend;
 use Aviat\Ion\Exception\DoubleRenderException;
+use Aviat\Ion\Tests\Ion_TestCase;
+use Aviat\Ion\Tests\TestHttpView;
 
-class HttpViewTest extends \Ion_TestCase {
+class HttpViewTest extends Ion_TestCase {
 
 	protected $view;
 	protected $friend;
@@ -27,7 +29,7 @@ class HttpViewTest extends \Ion_TestCase {
 	public function setUp()
 	{
 		parent::setUp();
-		$this->view = new \TestHttpView($this->container);
+		$this->view = new TestHttpView($this->container);
 		$this->friend = new Friend($this->view);
 	}
 

@@ -16,14 +16,17 @@
 
 namespace Aviat\Ion\Tests\Transformer;
 
-class AbstractTransformerTest extends \Ion_TestCase {
+use Aviat\Ion\Tests\Ion_TestCase;
+use Aviat\Ion\Tests\TestTransformer;
+
+class AbstractTransformerTest extends Ion_TestCase {
 
 	protected $transformer;
 
 
 	public function setUp()
 	{
-		$this->transformer = new \TestTransformer();
+		$this->transformer = new TestTransformer();
 	}
 
 	public function dataTransformCollection()

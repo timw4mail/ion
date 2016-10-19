@@ -19,8 +19,9 @@ namespace Aviat\Ion\Tests\Cache\Driver;
 use Aviat\Ion\Config;
 use Aviat\Ion\Friend;
 use Aviat\Ion\Cache\Driver\SQLDriver;
+use Aviat\Ion\Tests\Ion_TestCase;
 
-class CacheSQLDriverTest extends \Ion_TestCase {
+class CacheSQLDriverTest extends Ion_TestCase {
 	use CacheDriverBase;
 
 	protected $driver;

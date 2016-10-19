@@ -3,13 +3,14 @@
 namespace Aviat\Ion\Tests;
 
 use Aviat\Ion\Friend;
+use Aviat\Ion\Tests\FriendTestClass;
 
-class FriendTest extends \Ion_TestCase {
+class FriendTest extends Ion_TestCase {
 
 	public function setUp()
 	{
 		parent::setUp();
-		$obj = new \FriendTestClass();
+		$obj = new FriendTestClass();
 		$this->friend = new Friend($obj);
 	}
 

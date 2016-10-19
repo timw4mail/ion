@@ -17,8 +17,9 @@
 namespace Aviat\Ion\Tests\Cache\Driver;
 
 use Aviat\Ion\Cache\Driver\RedisDriver;
+use Aviat\Ion\Tests\Ion_TestCase;
 
-class CacheRedisDriverTest extends \Ion_TestCase {
+class CacheRedisDriverTest extends Ion_TestCase {
 	use CacheDriverBase;
 
 	protected $driver;

@@ -29,7 +29,7 @@ trait StringWrapper {
 	 * @param string $str
 	 * @return StringType
 	 */
-	public function string($str)
+	public function string($str): StringType
 	{
 		return StringType::create($str);
 	}

@@ -3,14 +3,14 @@
  * All the mock classes that extend the classes they are used to test
  */
 
+namespace Aviat\Ion\Tests;
+
 use Aviat\Ion\Enum;
 use Aviat\Ion\Exception\DoubleRenderException;
 use Aviat\Ion\Friend;
 use Aviat\Ion\Transformer\AbstractTransformer;
 use Aviat\Ion\View;
-use Aviat\Ion\View\HtmlView;
-use Aviat\Ion\View\HttpView;
-use Aviat\Ion\View\JsonView;
+use Aviat\Ion\View\{HtmlView, HttpView, JsonView};
 
 // -----------------------------------------------------------------------------
 // Mock the default error handler

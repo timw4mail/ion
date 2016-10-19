@@ -16,6 +16,10 @@
 
 namespace Aviat\Ion\Tests\View;
 
+use Aviat\Ion\Tests\TestHtmlView;
+
+use function _dir;
+
 class HtmlViewTest extends HttpViewTest {
 
 	protected $template_path;
@@ -23,7 +27,7 @@ class HtmlViewTest extends HttpViewTest {
 	public function setUp()
 	{
 		parent::setUp();
-		$this->view = new \TestHtmlView($this->container);
+		$this->view = new TestHtmlView($this->container);
 	}
 
 	public function testRenderTemplate()

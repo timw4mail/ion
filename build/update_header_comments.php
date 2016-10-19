@@ -25,28 +25,30 @@ if ( ! function_exists('glob_recursive'))
 
 function get_text_to_replace($tokens)
 {
-	if ($tokens[0][0] !== T_OPEN_TAG)
+	$output = '';
+
+	// Tokens have the follow structure if arrays:
+	// [0] => token type constant
+	// [1] => raw sytax parsed to that token
+	// [2] => line number
+	foreach($tokens as $token)
 	{
-		return NULL;
+		// Since we only care about opening docblocks,
+		// bail out when we get to the namespace token
+		if (is_array($token) && $token[0] === T_NAMESPACE)
+		{
+			break;
+		}
+
+		if (is_array($token))
+		{
+			$token = $token[1];
+		}
+
+		$output .= $token;
 	}
 
-	// If there is already a docblock, as the second token after the
-	// open tag, get the contents of that token to replace
-	if ($tokens[1][0] === T_DOC_COMMENT)
-	{
-		return "<?php\n" . $tokens[1][1];
-	}
-	// If there is a declare strict types,
-	else if ($tokens[1][0] === T_DECLARE && $tokens[9][0] === T_DOC_COMMENT)
-	{
-		// '<?php' and 'declare(strict_types=1);' makes for 8 tokens
-		// replace it all
-		return "<?php\ndeclare(strict_types=1);\n" . $tokens[9][1];
-	}
-	else if ($tokens[1][0] !== T_DOC_COMMENT)
-	{
-		return "<?php";
-	}
+	return $output;
 }
 
 function get_tokens($source)
@@ -59,6 +61,12 @@ function replace_files(array $files, $template)
 	foreach ($files as $file)
 	{
 		$source = file_get_contents($file);
+
+		if (stripos($source, 'namespace') === FALSE)
+		{
+			continue;
+		}
+
 		$tokens = get_tokens($source);
 		$text_to_replace = get_text_to_replace($tokens);
 
