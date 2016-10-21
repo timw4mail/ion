@@ -43,26 +43,26 @@ class Json {
 	 *
 	 * @param string $filename
 	 * @param mixed  $data
-	 * @param int    $json_options - Options to pass to json_encode
-	 * @param int    $file_options - Options to pass to file_get_contents
+	 * @param int    $jsonOptions - Options to pass to json_encode
+	 * @param int    $fileOptions - Options to pass to file_get_contents
 	 * @return int
 	 */
-	public static function encodeFile($filename, $data, $json_options = 0, $file_options = 0)
+	public static function encodeFile(string $filename, $data, int $jsonOptions = 0, int $fileOptions = 0): int
 	{
-		$json = self::encode($data, $json_options);
-		return file_put_contents($filename, $json, $file_options);
+		$json = self::encode($data, $jsonOptions);
+		return file_put_contents($filename, $json, $fileOptions);
 	}
 
 	/**
 	 * Decode data from json
 	 *
-	 * @param string $json
+	 * @param string|null $json
 	 * @param bool   $assoc
 	 * @param int    $depth
 	 * @param int    $options
 	 * @return mixed
 	 */
-	public static function decode($json, $assoc = TRUE, $depth = 512, $options = 0)
+	public static function decode($json, bool $assoc = TRUE, int $depth = 512, int $options = 0)
 	{
 		// Don't try to decode null
 		if (empty($json))
@@ -86,7 +86,7 @@ class Json {
  	 * @param int    $options
 	 * @return mixed
 	 */
-	public static function decodeFile($filename, $assoc = TRUE, $depth = 512, $options = 0)
+	public static function decodeFile(string $filename, bool $assoc = TRUE, int $depth = 512, int $options = 0)
 	{
 		$json = file_get_contents($filename);
 		return self::decode($json, $assoc, $depth, $options);
@@ -98,7 +98,7 @@ class Json {
 	 * @param  string $string
 	 * @return boolean
 	 */
-	public static function isJson($string)
+	public static function isJson(string $string): bool
 	{
 		return StringType::create($string)->isJson();
 	}

@@ -34,7 +34,7 @@ class HtmlViewTest extends HttpViewTest {
 	{
 		$path = _dir(self::TEST_VIEW_DIR, 'test_view.php');
 		$expected = '<tag>foo</tag>';
-		$actual = $this->view->render_template($path, [
+		$actual = $this->view->renderTemplate($path, [
 			'var' => 'foo'
 		]);
 		$this->assertEquals($expected, $actual);

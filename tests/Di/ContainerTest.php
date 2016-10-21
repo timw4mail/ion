@@ -16,7 +16,7 @@
 
 namespace Aviat\Ion\Tests\Di;
 
-use Aviat\Ion\Di\Container;
+use Aviat\Ion\Di\{Container, ContainerAware};
 use Aviat\Ion\Di\Exception\ContainerException;
 use Aviat\Ion\Tests\Ion_TestCase;
 use Monolog\Logger;
@@ -32,11 +32,10 @@ class FooTest {
 }
 
 class FooTest2 {
-	use \Aviat\Ion\Di\ContainerAware;
+	use ContainerAware;
 }
 
 class ContainerTest extends Ion_TestCase {
-
 
 	public function setUp()
 	{
@@ -85,15 +84,9 @@ class ContainerTest extends Ion_TestCase {
 	 */
 	public function testGetNewWithException($id, $exception, $message)
 	{
-		try
-		{
-			$this->container->getNew($id);
-		}
-		catch(ContainerException $e)
-		{
-			$this->assertInstanceOf($exception, $e);
-			$this->assertEquals($message, $e->getMessage());
-		}
+		$this->expectException($exception);
+		$this->expectExceptionMessage($message);
+		$this->container->getNew($id);
 	}
 
 	public function dataSetInstanceWithException()

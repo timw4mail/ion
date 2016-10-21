@@ -16,11 +16,8 @@
 
 namespace Aviat\Ion\Di;
 
+use Aviat\Ion\Di\Exception\{ContainerException, NotFoundException};
 use Psr\Log\LoggerInterface;
-
-use Aviat\Ion\Di\Exception\ContainerException;
-use Aviat\Ion\Di\Exception\NotFoundException;
-
 
 /**
  * Dependency container
@@ -106,13 +103,13 @@ class Container implements ContainerInterface {
 	{
 		if ( ! is_string($id))
 		{
-			throw new ContainerException("Id must be a string");
+			throw new ContainerException('Id must be a string');
 		}
 
 		if ($this->has($id))
 		{
 			// By default, call a factory with the Container
-			$args = (is_array($args)) ? $args : [$this];
+			$args = is_array($args) ? $args : [$this];
 			$obj = call_user_func_array($this->container[$id], $args);
 
 			// Check for container interface, and apply the container to the object
@@ -130,7 +127,7 @@ class Container implements ContainerInterface {
 	 * @param Callable  $value - a factory callable for the item
 	 * @return ContainerInterface
 	 */
-	public function set($id, Callable $value)
+	public function set(string $id, Callable $value): ContainerInterface
 	{
 		$this->container[$id] = $value;
 		return $this;
@@ -144,7 +141,7 @@ class Container implements ContainerInterface {
 	 * @throws NotFoundException - No entry was found for this identifier.
 	 * @return ContainerInterface
 	 */
-	public function setInstance($id, $value)
+	public function setInstance(string $id, $value): ContainerInterface
 	{
 		if ( ! $this->has($id))
 		{
@@ -162,7 +159,7 @@ class Container implements ContainerInterface {
 	 * @param string $id Identifier of the entry to look for.
 	 * @return boolean
 	 */
-	public function has($id)
+	public function has($id): bool
 	{
 		return array_key_exists($id, $this->container);
 	}
@@ -173,7 +170,7 @@ class Container implements ContainerInterface {
 	 * @param  string $id The logger channel
 	 * @return boolean
 	 */
-	public function hasLogger($id = 'default')
+	public function hasLogger(string $id = 'default'): bool
 	{
 		return array_key_exists($id, $this->loggers);
 	}
@@ -185,7 +182,7 @@ class Container implements ContainerInterface {
 	 * @param string          $id     The logger 'channel'
 	 * @return ContainerInterface
 	 */
-	public function setLogger(LoggerInterface $logger, $id = 'default')
+	public function setLogger(LoggerInterface $logger, string $id = 'default'): ContainerInterface
 	{
 		$this->loggers[$id] = $logger;
 		return $this;
@@ -197,9 +194,9 @@ class Container implements ContainerInterface {
 	 * @param  string $id The logger to retrieve
 	 * @return LoggerInterface|null
 	 */
-	public function getLogger($id = 'default')
+	public function getLogger(string $id = 'default')
 	{
-		return ($this->hasLogger($id))
+		return $this->hasLogger($id)
 			? $this->loggers[$id]
 			: NULL;
 	}
@@ -217,8 +214,8 @@ class Container implements ContainerInterface {
 		$trait_name = __NAMESPACE__ . '\\ContainerAware';
 		$interface_name = __NAMESPACE__ . '\\ContainerAwareInterface';
 
-		$uses_trait = in_array($trait_name, class_uses($obj));
-		$implements_interface = in_array($interface_name, class_implements($obj));
+		$uses_trait = in_array($trait_name, class_uses($obj), TRUE);
+		$implements_interface = in_array($interface_name, class_implements($obj), TRUE);
 
 		if ($uses_trait OR $implements_interface)
 		{

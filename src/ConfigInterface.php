@@ -36,7 +36,7 @@ interface ConfigInterface {
 	 * @throws \InvalidArgumentException
 	 * @return ConfigInterface
 	 */
-	public function set($key, $value);
+	public function set($key, $value): ConfigInterface;
 
 	/**
 	 * Remove a config value

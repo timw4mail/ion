@@ -16,13 +16,36 @@
 
 namespace Aviat\Ion\Di;
 
-use Interop\Container\ContainerInterface as InteropInterface;
 use Psr\Log\LoggerInterface;
 
 /**
  * Interface for the Dependency Injection Container
+ *
+ * Based on container-interop interface, but return types and
+ * scalar type hints make the interface incompatible to the PHP parser
+ *
+ * @see https://github.com/container-interop/container-interop
  */
-interface ContainerInterface extends InteropInterface {
+interface ContainerInterface {
+
+	/**
+	 * Finds an entry of the container by its identifier and returns it.
+	 *
+	 * @param string $id Identifier of the entry to look for.
+	 * @throws NotFoundException  No entry was found for this identifier.
+	 * @throws ContainerException Error while retrieving the entry.
+	 * @return mixed Entry.
+	 */
+	public function get($id);
+
+	/**
+	 * Returns true if the container can return an entry for the given identifier.
+	 * Returns false otherwise.
+	 *
+	 * @param string $id Identifier of the entry to look for.
+	 * @return boolean
+	 */
+	public function has($id): bool;
 
 	/**
 	 * Add a factory to the container
@@ -31,7 +54,7 @@ interface ContainerInterface extends InteropInterface {
 	 * @param Callable  $value - a factory callable for the item
 	 * @return ContainerInterface
 	 */
-	public function set($id, Callable $value);
+	public function set(string $id, Callable $value): ContainerInterface;
 
 	/**
 	 * Set a specific instance in the container for an existing factory
@@ -40,7 +63,7 @@ interface ContainerInterface extends InteropInterface {
 	 * @param mixed $value
 	 * @return ContainerInterface
 	 */
-	public function setInstance($id, $value);
+	public function setInstance(string $id, $value): ContainerInterface;
 
 	/**
 	 * Get a new instance of the specified item
@@ -55,22 +78,22 @@ interface ContainerInterface extends InteropInterface {
 	 * @param  string $id The logger channel
 	 * @return boolean
 	 */
-	public function hasLogger($id = 'default');
+	public function hasLogger(string $id = 'default'): bool;
 
 	/**
 	 * Add a logger to the Container
 	 *
 	 * @param LoggerInterface $logger
 	 * @param string          $id     The logger 'channel'
-	 * @return Container
+	 * @return ContainerInterface
 	 */
-	public function setLogger(LoggerInterface $logger, $id = 'default');
+	public function setLogger(LoggerInterface $logger, string $id = 'default'): ContainerInterface;
 
 	/**
 	 * Retrieve a logger for the selected channel
 	 *
-	 * @param  string $id The logger to retreive
+	 * @param  string $id The logger to retrieve
 	 * @return LoggerInterface|null
 	 */
-	public function getLogger($id = 'default');
+	public function getLogger(string $id = 'default');
 }

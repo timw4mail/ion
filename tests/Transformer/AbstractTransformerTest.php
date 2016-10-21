@@ -102,7 +102,7 @@ class AbstractTransformerTest extends Ion_TestCase {
 	 */
 	public function testTransformCollection($original, $expected)
 	{
-		$actual = $this->transformer->transform_collection($original);
+		$actual = $this->transformer->transformCollection($original);
 		$this->assertEquals($expected, $actual);
 	}
 }

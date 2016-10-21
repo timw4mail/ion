@@ -16,6 +16,8 @@
 
 namespace Aviat\Ion\Type;
 
+use InvalidArgumentException;
+
 /**
  * Wrapper class for native array methods for convenience
  *
@@ -37,7 +39,7 @@ class ArrayType {
 	 *
 	 * @var array
 	 */
-	protected $native_methods = [
+	protected $nativeMethods = [
 		'chunk' => 'array_chunk',
 		'pluck' => 'array_column',
 		'key_diff' => 'array_diff_key',
@@ -62,7 +64,7 @@ class ArrayType {
 	 *
 	 * @var array
 	 */
-	protected $native_in_place_methods = [
+	protected $nativeInPlaceMethods = [
 		'shuffle' => 'shuffle',
 		'shift' => 'array_shift',
 		'unshift' => 'array_unshift',
@@ -88,35 +90,35 @@ class ArrayType {
 	 * @return mixed
 	 * @throws \InvalidArgumentException
 	 */
-	public function __call($method, $args)
+	public function __call(string $method, array $args)
 	{
 		// Simple mapping for the majority of methods
-		if (array_key_exists($method, $this->native_methods))
+		if (array_key_exists($method, $this->nativeMethods))
 		{
-			$func = $this->native_methods[$method];
+			$func = $this->nativeMethods[$method];
 			// Set the current array as the first argument of the method
 			array_unshift($args, $this->arr);
 			return call_user_func_array($func, $args);
 		}
 
 		// Mapping for in-place methods
-		if (array_key_exists($method, $this->native_in_place_methods))
+		if (array_key_exists($method, $this->nativeInPlaceMethods))
 		{
-			$func = $this->native_in_place_methods[$method];
+			$func = $this->nativeInPlaceMethods[$method];
 			$func($this->arr);
 			return $this->arr;
 		}
 
-		throw new \InvalidArgumentException("Method '{$method}' does not exist");
+		throw new InvalidArgumentException("Method '{$method}' does not exist");
 	}
 
 	/**
 	 * Does the passed key exist in the current array?
 	 *
-	 * @param string $key
+	 * @param int|string $key
 	 * @return bool
 	 */
-	public function has_key($key)
+	public function hasKey($key): bool
 	{
 		return array_key_exists($key, $this->arr);
 	}
@@ -129,7 +131,7 @@ class ArrayType {
 	 * @param mixed $value
 	 * @return array
 	 */
-	public function fill($start_index, $num, $value)
+	public function fill(int $start_index, int $num, $value): array
 	{
 		return array_fill($start_index, $num, $value);
 	}
@@ -140,7 +142,7 @@ class ArrayType {
 	 * @param callable $callback
 	 * @return array
 	 */
-	public function map(callable $callback)
+	public function map(callable $callback): array
 	{
 		return array_map($callback, $this->arr);
 	}
@@ -152,7 +154,7 @@ class ArrayType {
 	 * @param bool  $strict
 	 * @return false|integer|string
 	 */
-	public function search($value, $strict = FALSE)
+	public function search($value, bool $strict = TRUE)
 	{
 		return array_search($value, $this->arr, $strict);
 	}
@@ -164,7 +166,7 @@ class ArrayType {
 	 * @param bool  $strict
 	 * @return bool
 	 */
-	public function has($value, $strict = FALSE)
+	public function has($value, bool $strict = TRUE): bool
 	{
 		return in_array($value, $this->arr, $strict);
 	}
@@ -184,7 +186,7 @@ class ArrayType {
 		}
 		else
 		{
-			if ($this->has_key($key))
+			if ($this->hasKey($key))
 			{
 				$value =& $this->arr[$key];
 			}
@@ -200,7 +202,7 @@ class ArrayType {
 	 * @param mixed $value
 	 * @return ArrayType
 	 */
-	public function set($key, $value)
+	public function set($key, $value): ArrayType
 	{
 		$this->arr[$key] = $value;
 		return $this;
@@ -212,7 +214,7 @@ class ArrayType {
 	 * @param  array $key
 	 * @return mixed
 	 */
-	public function &get_deep_key(array $key)
+	public function &getDeepKey(array $key)
 	{
 		$pos =& $this->arr;
 
@@ -241,7 +243,7 @@ class ArrayType {
 	 * @param mixed $value
 	 * @return array
 	 */
-	public function set_deep_key(array $key, $value)
+	public function setDeepKey(array $key, $value): array
 	{
 		$pos =& $this->arr;
 

@@ -16,9 +16,11 @@
 
 namespace Aviat\Ion\Exception;
 
+use InvalidArgumentException;
+
 /**
  * Exception for bad configuration
  */
-class ConfigException extends \InvalidArgumentException {
+class ConfigException extends InvalidArgumentException {
 
 }

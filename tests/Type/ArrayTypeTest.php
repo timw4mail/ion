@@ -124,8 +124,8 @@ class ArrayTypeTest extends Ion_TestCase {
 			]
 		];
 		$obj = $this->arr($arr);
-		$this->assertEquals('foobar', $obj->get_deep_key(['baz', 'bar']));
-		$this->assertNull($obj->get_deep_key(['foo', 'bar', 'baz']));
+		$this->assertEquals('foobar', $obj->getDeepKey(['baz', 'bar']));
+		$this->assertNull($obj->getDeepKey(['foo', 'bar', 'baz']));
 	}
 
 	public function testMap()
@@ -165,8 +165,8 @@ class ArrayTypeTest extends Ion_TestCase {
 			'a' => 'b',
 			'z' => 'y'
 		]);
-		$this->assertTrue($obj->has_key('a'));
-		$this->assertFalse($obj->has_key('b'));
+		$this->assertTrue($obj->hasKey('a'));
+		$this->assertFalse($obj->hasKey('b'));
 	}
 
 	public function testHas()

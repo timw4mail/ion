@@ -16,9 +16,8 @@
 
 namespace Aviat\Ion;
 
-
 use Aviat\Ion\Exception\ConfigException;
-
+use Aviat\Ion\Type\ArrayType;
 use InvalidArgumentException;
 
 /**
@@ -31,18 +30,18 @@ class Config implements ConfigInterface {
 	/**
 	 * Config object
 	 *
-	 * @var \Aviat\Ion\Type\ArrayType
+	 * @var ArrayType
 	 */
 	protected $map = [];
 
 	/**
 	 * Constructor
 	 *
-	 * @param array $config_array
+	 * @param array $configArray
 	 */
-	public function __construct(array $config_array = [])
+	public function __construct(array $configArray = [])
 	{
-		$this->map = $this->arr($config_array);
+		$this->map = $this->arr($configArray);
 	}
 
 	/**
@@ -56,7 +55,7 @@ class Config implements ConfigInterface {
 	{
 		if (is_array($key))
 		{
-			return $this->map->get_deep_key($key);
+			return $this->map->getDeepKey($key);
 		}
 
 		return $this->map->get($key);
@@ -72,7 +71,7 @@ class Config implements ConfigInterface {
 	{
 		if (is_array($key))
 		{
-			$this->map->set_deep_key($key, NULL);
+			$this->map->setDeepKey($key, NULL);
 		}
 		else
 		{
@@ -87,13 +86,13 @@ class Config implements ConfigInterface {
 	 * @param integer|string|array $key
 	 * @param mixed                $value
 	 * @throws InvalidArgumentException
-	 * @return Config
+	 * @return ConfigInterface
 	 */
-	public function set($key, $value)
+	public function set($key, $value): ConfigInterface
 	{
 		if (is_array($key))
 		{
-			$this->map->set_deep_key($key, $value);
+			$this->map->setDeepKey($key, $value);
 		}
 		else if (is_scalar($key) && ! empty($key))
 		{

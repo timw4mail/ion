@@ -37,7 +37,7 @@ class JsonView extends HttpView {
 	 * @param mixed $string
 	 * @return ViewInterface
 	 */
-	public function setOutput($string)
+	public function setOutput($string): ViewInterface
 	{
 		if ( ! is_string($string))
 		{

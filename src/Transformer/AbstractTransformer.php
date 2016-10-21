@@ -16,12 +16,14 @@
 
 namespace Aviat\Ion\Transformer;
 
+use Aviat\Ion\StringWrapper;
+
 /**
  * Base class for data trasformation
  */
 abstract class AbstractTransformer implements TransformerInterface {
 
-	use \Aviat\Ion\StringWrapper;
+	use StringWrapper;
 
 	/**
 	 * Mutate the data structure
@@ -37,7 +39,7 @@ abstract class AbstractTransformer implements TransformerInterface {
 	 * @param  array|object $collection
 	 * @return array
 	 */
-	public function transform_collection($collection)
+	public function transformCollection($collection): array
 	{
 		$list = (array)$collection;
 		return array_map([$this, 'transform'], $list);

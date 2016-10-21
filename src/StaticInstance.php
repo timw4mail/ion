@@ -37,7 +37,7 @@ trait StaticInstance {
 	 * @param array  $args
 	 * @return mixed
 	 */
-	public function __call($method, $args)
+	public function __call(string $method, array $args)
 	{
 		if (method_exists($this, $method))
 		{
@@ -53,7 +53,7 @@ trait StaticInstance {
 	 * @param array  $args
 	 * @return mixed
 	 */
-	public static function __callStatic($method, $args)
+	public static function __callStatic(string $method, array $args)
 	{
 		$class = get_called_class();
 		if ( ! array_key_exists($class, self::$instance))

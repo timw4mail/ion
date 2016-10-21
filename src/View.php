@@ -75,7 +75,7 @@ abstract class View
 	 * @throws DoubleRenderException
 	 * @return string
 	 */
-	public function __toString()
+	public function __toString(): string
 	{
 		if ($this->hasRendered)
 		{
@@ -88,10 +88,10 @@ abstract class View
 	/**
 	 * Set the output string
 	 *
-	 * @param string $string
+	 * @param mixed $string
 	 * @return ViewInterface
 	 */
-	public function setOutput($string)
+	public function setOutput($string): ViewInterface
 	{
 		$this->response->getBody()->write($string);
 
@@ -104,7 +104,7 @@ abstract class View
 	 * @param string $string
 	 * @return ViewInterface
 	 */
-	public function appendOutput($string)
+	public function appendOutput(string $string): ViewInterface
 	{
 		return $this->setOutput($string);
 	}
@@ -115,7 +115,7 @@ abstract class View
 	 *
 	 * @return string
 	 */
-	public function getOutput()
+	public function getOutput(): string
 	{
 		return $this->response->getBody()->__toString();
 	}

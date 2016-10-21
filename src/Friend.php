@@ -16,11 +16,11 @@
 
 namespace Aviat\Ion;
 
+use BadMethodCallException;
+use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionProperty;
-use InvalidArgumentException;
-use BadMethodCallException;
 
 /**
  * Friend class for testing
@@ -62,7 +62,7 @@ class Friend {
 	 * @param  string $key
 	 * @return mixed
 	 */
-	public function __get($key)
+	public function __get(string $key)
 	{
 		if ($this->_reflect_->hasProperty($key))
 		{
@@ -80,7 +80,7 @@ class Friend {
 	 * @param mixed  $value
 	 * @return void
 	 */
-	public function __set($key, $value)
+	public function __set(string $key, $value)
 	{
 		if ($this->_reflect_->hasProperty($key))
 		{
@@ -97,7 +97,7 @@ class Friend {
 	 * @return mixed
 	 * @throws BadMethodCallException
 	 */
-	public function __call($method, $args)
+	public function __call(string $method, array $args)
 	{
 		if ( ! $this->_reflect_->hasMethod($method))
 		{
@@ -116,7 +116,7 @@ class Friend {
 	 * @param  string $name
 	 * @return ReflectionProperty|null
 	 */
-	private function _get_property($name)
+	private function _get_property(string $name)
 	{
 		try
 		{

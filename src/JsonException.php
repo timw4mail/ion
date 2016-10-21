@@ -16,10 +16,12 @@
 
 namespace Aviat\Ion;
 
+use InvalidArgumentException;
+
 /**
  * Exceptions thrown by the Json class
  */
-class JsonException extends \InvalidArgumentException {
+class JsonException extends InvalidArgumentException {
 
 }
 // End of JsonException.php

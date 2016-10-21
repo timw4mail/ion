@@ -30,7 +30,7 @@ trait ArrayWrapper {
 	 * @param array $arr
 	 * @return ArrayType
 	 */
-	public function arr(array $arr)
+	public function arr(array $arr): ArrayType
 	{
 		return new ArrayType($arr);
 	}

@@ -19,6 +19,7 @@ namespace Aviat\Ion\Cache\Driver;
 use Aviat\Ion\ConfigInterface;
 use Aviat\Ion\Exception\ConfigException;
 use Aviat\Ion\Model\DB;
+use PDO;
 
 /**
  * Driver for caching via a traditional SQL database
@@ -63,8 +64,8 @@ class SQLDriver extends DB implements DriverInterface  {
 			->from('cache')
 			->where('key', $key)
 			->get();
-			
-		$row = $query->fetch(\PDO::FETCH_ASSOC);
+
+		$row = $query->fetch(PDO::FETCH_ASSOC);
 
 		if (empty($row))
 		{
@@ -106,7 +107,7 @@ class SQLDriver extends DB implements DriverInterface  {
 	{
 		$this->db->where('key', $key)
 			->delete('cache');
-			
+
 		return $this;
 	}
 

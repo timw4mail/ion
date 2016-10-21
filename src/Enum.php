@@ -33,7 +33,7 @@ abstract class Enum {
 	 *
 	 * @return array
 	 */
-	protected function getConstList()
+	protected function getConstList(): array
 	{
 		$reflect = new ReflectionClass($this);
 		return $reflect->getConstants();
@@ -44,7 +44,7 @@ abstract class Enum {
 	 * @param  mixed $key
 	 * @return boolean
 	 */
-	protected function isValid($key)
+	protected function isValid($key): bool
 	{
 		$values = array_values($this->getConstList());
 		return in_array($key, $values);

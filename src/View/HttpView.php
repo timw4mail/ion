@@ -41,7 +41,7 @@ class HttpView extends BaseView {
 	 * @param int    $code
 	 * @return void
 	 */
-	public function redirect($url, $code)
+	public function redirect(string $url, int $code)
 	{
 		ob_start();
 		$message = $this->response->getReasonPhrase($code);
@@ -64,7 +64,7 @@ class HttpView extends BaseView {
 	 * @param int $code
 	 * @return HttpView
 	 */
-	public function setStatusCode($code)
+	public function setStatusCode(int $code): HttpView
 	{
 		$this->response = $this->response->withStatus($code)
 			->withProtocolVersion('1.1');

@@ -34,7 +34,7 @@ interface ContainerAwareInterface {
 	 *
 	 * @return ContainerInterface
 	 */
-	public function getContainer();
+	public function getContainer(): ContainerInterface;
 
 }
 // End of ContainerAwareInterface.php

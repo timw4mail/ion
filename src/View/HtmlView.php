@@ -55,7 +55,7 @@ class HtmlView extends HttpView {
 	 * @param array  $data
 	 * @return string
 	 */
-	public function render_template($path, $data)
+	public function renderTemplate(string $path, array $data): string
 	{
 		$data['helper'] = $this->helper;
 		$data['escape'] = $this->helper->escape();

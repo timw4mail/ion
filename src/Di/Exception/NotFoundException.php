@@ -16,11 +16,13 @@
 
 namespace Aviat\Ion\Di\Exception;
 
+use Interop\Container\Exception\NotFoundException as InteropNotFoundException;
+
 /**
  * Exception for Di Container when trying to access a
  * key that doesn't exist in the container
  */
-class NotFoundException extends ContainerException implements \Interop\Container\Exception\NotFoundException {
+class NotFoundException extends ContainerException implements InteropNotFoundException {
 
 }
 // End of NotFoundException.php

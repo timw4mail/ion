@@ -29,15 +29,15 @@ interface ViewInterface {
 	 * @throws DoubleRenderException
 	 * @return string
 	 */
-	public function __toString();
+	public function __toString(): string;
 
 	/**
 	 * Set the output string
 	 *
-	 * @param string $string
+	 * @param mixed $string
 	 * @return ViewInterface
 	 */
-	public function setOutput($string);
+	public function setOutput($string): ViewInterface;
 
 	/**
 	 * Append additional output.
@@ -45,7 +45,7 @@ interface ViewInterface {
 	 * @param string $string
 	 * @return ViewInterface
 	 */
-	public function appendOutput($string);
+	public function appendOutput(string $string): ViewInterface;
 
 	/**
 	 * Get the current output as a string. Does not
@@ -53,7 +53,7 @@ interface ViewInterface {
 	 *
 	 * @return string
 	 */
-	public function getOutput();
+	public function getOutput(): string;
 
 	/**
 	 * Send output to client. As it renders the view,
