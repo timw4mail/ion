@@ -25,4 +25,4 @@ test:hhvm:
       - composer install
     image: 51systems/docker-gitlab-ci-runner-hhvm
     script:
-      - vendor/bin/phpunit --coverage-text --colors=never
+      - hhvm -d hhvm.php7.all=true vendor/bin/phpunit --coverage-text --colors=never
