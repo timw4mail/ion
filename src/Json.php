@@ -31,7 +31,7 @@ class Json {
 	 * @param int   $depth
 	 * @return string
 	 */
-	public static function encode($data, $options = 0, $depth = 512)
+	public static function encode($data, $options = 0, $depth = 512): string
 	{
 		$json = json_encode($data, $options, $depth);
 		self::check_json_error();

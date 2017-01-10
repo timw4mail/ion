@@ -88,7 +88,7 @@ class ArrayType {
 	 * @param string $method
 	 * @param array  $args
 	 * @return mixed
-	 * @throws \InvalidArgumentException
+	 * @throws InvalidArgumentException
 	 */
 	public function __call(string $method, array $args)
 	{
@@ -97,8 +97,7 @@ class ArrayType {
 		{
 			$func = $this->nativeMethods[$method];
 			// Set the current array as the first argument of the method
-			array_unshift($args, $this->arr);
-			return call_user_func_array($func, $args);
+			return call_user_func($func, $this->arr, ...$args);
 		}
 
 		// Mapping for in-place methods
@@ -211,7 +210,10 @@ class ArrayType {
 	/**
 	 * Return a reference to the value of an arbitrary key on the array
 	 *
-	 * @param  array $key
+	 * @example $arr = new ArrayType([0 => ['data' => ['foo' => 'bar']]]);
+	 * $val = $arr->getDeepKey([0, 'data', 'foo']);
+	 * // returns 'bar'
+	 * @param  array $key An array of keys of the array
 	 * @return mixed
 	 */
 	public function &getDeepKey(array $key)

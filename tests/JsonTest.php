@@ -65,4 +65,9 @@ class JsonTest extends Ion_TestCase {
 
 		Json::decode($badJson);
 	}
+
+	public function testDecodeNull()
+	{
+		$this->assertNull(Json::decode(NULL));
+	}
 }
