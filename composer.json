@@ -36,7 +36,6 @@
 		"henrikbjorn/lurker": "^1.1.0",
 		"nikic/php-parser": "3.0.*@beta",
 		"monolog/monolog": "1.*",
-		"predis/predis": "1.1.*",
 		"squizlabs/php_codesniffer": "^3.0.0@RC"
 	},
 	"scripts": {
@@ -46,7 +45,6 @@
 		"test": "vendor/bin/phpunit"
 	},
 	"suggest": {
-		"monolog/monolog": "Provides implementation of psr/log",
-		"predis/predis": "Required for redis cache driver"
+		"monolog/monolog": "Provides implementation of psr/log"
 	}
 }
