@@ -39,9 +39,14 @@ trait StaticInstance {
 	 */
 	public function __call(string $method, array $args)
 	{
+		$class = \get_called_class();
 		if (method_exists($this, $method))
 		{
 			return call_user_func_array([$this, $method], $args);
+		}
+		else if(method_exists($class, $method))
+		{
+			return static::__callStatic($method, $args);
 		}
 	}
 
@@ -55,13 +60,7 @@ trait StaticInstance {
 	 */
 	public static function __callStatic(string $method, array $args)
 	{
-		$class = get_called_class();
-		if ( ! array_key_exists($class, self::$instance))
-		{
-			self::$instance[$class] = new $class();
-		}
-
-		return call_user_func_array([self::$instance[$class], $method], $args);
+		return call_user_func_array([\get_called_class(), $method], $args);
 	}
 }
 // End of StaticInstance.php

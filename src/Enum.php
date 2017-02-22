@@ -33,9 +33,17 @@ abstract class Enum {
 	 *
 	 * @return array
 	 */
-	protected function getConstList(): array
+	protected static function getConstList(): array
 	{
-		$reflect = new ReflectionClass($this);
+		static $self;
+		
+		if (is_null($self)) 
+		{
+			$class = \get_called_class();
+			$self = new $class;
+		}
+		
+		$reflect = new ReflectionClass($self);
 		return $reflect->getConstants();
 	}
 
@@ -44,9 +52,9 @@ abstract class Enum {
 	 * @param  mixed $key
 	 * @return boolean
 	 */
-	protected function isValid($key): bool
+	protected static function isValid($key): bool
 	{
-		$values = array_values($this->getConstList());
+		$values = array_values(static::getConstList());
 		return in_array($key, $values);
 	}
 }
