@@ -12,7 +12,7 @@ apk upgrade --update && apk add --no-cache \
 	autoconf \
 	curl \
 	git \
-	php7-phpdbg
+	phpdbg
 	
 # Install phpunit, the tool that we will use for testing
 curl -Lo /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
