@@ -41,9 +41,10 @@
 		"phpstan/phpstan": "^0.6.4"
 	},
 	"scripts": {
-		"coverage": "vendor/bin/phpunit -c build",
+		"coverage": "phpdbg -qrr -- vendor/bin/phpunit -c build",
 		"build": "vendor/bin/robo build",
 		"docs": "cd build && ../vendor/bin/phpdox && cd ..",
+		"phpstan": "phpstan analyse src tests",
 		"test": "vendor/bin/phpunit"
 	},
 	"suggest": {
