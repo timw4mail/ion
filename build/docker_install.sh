@@ -3,36 +3,24 @@
 # We need to install dependencies only for Docker
 [[ ! -e /.dockerenv ]] && [[ ! -e /.dockerinit ]] && exit 0
 
-# Where am I?
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 set -xe
 
 # Install git (the php image doesn't have it) which is required by composer
-apt-get update -yqq
-apt-get install \
+apk upgrade --update && apk add --no-cache \
+	g++ \
+	make \
+	autoconf \
+	curl \
 	git \
-	unzip \
-	libfreetype6 \
-	libjpeg62-turbo \
-	libmcrypt4 \
-	libpng12-0 \
-	libfreetype6-dev \
-	libjpeg-dev \
-	libmcrypt-dev \
-	libpng12-dev \
-	libxslt1-dev \
-	libxslt1.1 \
-	zlib1g-dev \
-	-yqq
-
+	php7-phpdbg
+	
 # Install phpunit, the tool that we will use for testing
 curl -Lo /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
 chmod +x /usr/local/bin/phpunit
 
-# Install gd
-docker-php-ext-configure gd --enable-gd-native-ttf --with-jpeg-dir=/usr/lib/x86_64-linux-gnu --with-png-dir=/usr/lib/x86_64-linux-gnu --with-freetype-dir=/usr/lib/x86_64-linux-gnu
-docker-php-ext-install gd
-docker-php-ext-install mcrypt
-docker-php-ext-install xsl
-docker-php-ext-install zip
+# Install extensions
+# Install xdebug for coverage report
+# docker-php-source extract
+# pecl install xdebug
+# docker-php-ext-enable xdebug
+# docker-php-source delete

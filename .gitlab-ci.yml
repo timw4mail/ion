@@ -14,9 +14,9 @@ test:7:
       - curl -sS https://getcomposer.org/installer | php
       - php composer.phar update
       - php composer.phar install
-    image: php:7
+    image: php:7-alpine
     script:
-      - vendor/bin/phpunit --coverage-text --colors=never
+      - phpdbg -qrr -- vendor/bin/phpunit --coverage-text --colors=never
       
 test:7.1:
     before_script:
@@ -24,6 +24,6 @@ test:7.1:
       - curl -sS https://getcomposer.org/installer | php
       - php composer.phar update
       - php composer.phar install
-    image: php:7.1
+    image: php:7.1-alpine
     script:
-      - vendor/bin/phpunit --coverage-text --colors=never
+      - phpdbg -qrr -- vendor/bin/phpunit --coverage-text --colors=never
