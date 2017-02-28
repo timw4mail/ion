@@ -1,10 +1,3 @@
-# Composer stores all downloaded packages in the vendor/ directory.
-# Do not use the following if the vendor/ directory is commited to
-# your git repository.
-cache:
-  paths:
-  - vendor/
-
 test:7:
     before_script:
       - sh build/docker_install.sh > /dev/null

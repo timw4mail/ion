@@ -10,14 +10,3 @@ echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelin
 apk upgrade --update && apk add --no-cache \
 	curl \
 	git
-	
-# Install phpunit, the tool that we will use for testing
-# curl -Lo /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
-# chmod +x /usr/local/bin/phpunit
-
-# Install extensions
-# Install xdebug for coverage report
-# docker-php-source extract
-# pecl install xdebug
-# docker-php-ext-enable xdebug
-# docker-php-source delete
