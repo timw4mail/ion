@@ -26,33 +26,32 @@ use ReflectionClass;
  */
 abstract class Enum {
 
-	use StaticInstance;
-
 	/**
 	 * Return the list of constant values for the Enum
 	 *
 	 * @return array
 	 */
-	protected static function getConstList(): array
+	public static function getConstList(): array
 	{
 		static $self;
-		
-		if (is_null($self)) 
+
+		if (is_null($self))
 		{
 			$class = \get_called_class();
 			$self = new $class;
 		}
-		
+
 		$reflect = new ReflectionClass($self);
 		return $reflect->getConstants();
 	}
 
 	/**
 	 * Verify that a constant value is valid
+	 *
 	 * @param  mixed $key
 	 * @return boolean
 	 */
-	protected static function isValid($key): bool
+	public static function isValid($key): bool
 	{
 		$values = array_values(static::getConstList());
 		return in_array($key, $values);

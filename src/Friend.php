@@ -112,7 +112,6 @@ class Friend {
 	/**
 	 * Iterates over parent classes to get a ReflectionProperty
 	 *
-	 * @codeCoverageIgnore
 	 * @param  string $name
 	 * @return ReflectionProperty|null
 	 */

@@ -36,7 +36,6 @@ class HttpView extends BaseView {
 	/**
 	 * Do a redirect
 	 *
-	 * @codeCoverageIgnore
 	 * @param string $url
 	 * @param int    $code
 	 * @return void
@@ -86,7 +85,6 @@ class HttpView extends BaseView {
 	/**
 	 * Send the appropriate response
 	 *
-	 * @codeCoverageIgnore
 	 * @throws DoubleRenderException
 	 * @return void
 	 */
