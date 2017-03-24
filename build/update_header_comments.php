@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 $file_patterns = [
 	'src/*.php',
-	'tests/**/*.php',
+	'src/**/*.php',
+	'tests/*.php',
+	'tests/**/*.php'
 ];
 
 if ( ! function_exists('glob_recursive'))
