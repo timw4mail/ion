@@ -16,6 +16,8 @@
 
 namespace Aviat\Ion\Tests;
 
+use function Aviat\Ion\_dir;
+
 use Aviat\Ion\{Json, JsonException};
 
 class JsonTest extends Ion_TestCase {

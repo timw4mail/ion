@@ -16,12 +16,10 @@
 
 namespace Aviat\Ion\Tests;
 
+use function Aviat\Ion\_dir;
+
 use Aura\Web\WebFactory;
 use Aviat\Ion\Json;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Zend\Diactoros\ServerRequestFactory;
 use Zend\Diactoros\Response as HttpResponse;

@@ -10,30 +10,12 @@ if ($timezone === '' || $timezone === FALSE)
 	ini_set('date.timezone', 'GMT');
 }
 
-
-// -----------------------------------------------------------------------------
-// Global functions
-// -----------------------------------------------------------------------------
-
-/**
- * Joins paths together. Variadic to take an
- * arbitrary number of arguments
- *
- * @return string
- */
-function _dir()
-{
-	return implode(DIRECTORY_SEPARATOR, func_get_args());
-}
-
 // -----------------------------------------------------------------------------
 // Autoloading
 // -----------------------------------------------------------------------------
-
-require 'Ion_TestCase.php';
-
 // Composer autoload
-require __DIR__ . '/../vendor/autoload.php';
+require realpath(__DIR__ . '/../vendor/autoload.php');
+require 'Ion_TestCase.php';
 
 // -----------------------------------------------------------------------------
 // Ini Settings

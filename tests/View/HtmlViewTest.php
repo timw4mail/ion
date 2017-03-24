@@ -16,9 +16,9 @@
 
 namespace Aviat\Ion\Tests\View;
 
-use Aviat\Ion\Tests\TestHtmlView;
+use function Aviat\Ion\_dir;
 
-use function _dir;
+use Aviat\Ion\Tests\TestHtmlView;
 
 class HtmlViewTest extends HttpViewTest {
 
