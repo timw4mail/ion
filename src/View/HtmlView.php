@@ -67,6 +67,10 @@ class HtmlView extends HttpView {
 		$buffer = ob_get_contents();
 		ob_end_clean();
 
+
+		// Very basic html minify, that won't affect content between html tags
+		$buffer = preg_replace('/>\s+</', '> <', $buffer);
+
 		return $buffer;
 	}
 }
