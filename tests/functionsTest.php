@@ -14,16 +14,20 @@
  * @link        https://git.timshomepage.net/timw4mail/ion
  */
 
-namespace Aviat\Ion;
+namespace Aviat\Ion\Tests;
 
-/**
- * Joins paths together. Variadic to take an
- * arbitrary number of arguments
- *
- * @param string[] ...$args
- * @return string
- */
-function _dir(string ...$args): string
-{
-	return implode(DIRECTORY_SEPARATOR, $args);
+use function Aviat\Ion\_dir;
+
+use PHPUnit\Framework\TestCase;
+
+class functionsTest extends TestCase {
+
+
+	public function test_dir()
+	{
+		$args = ['foo', 'bar', 'baz'];
+		$expected = implode(\DIRECTORY_SEPARATOR, $args);
+
+		$this->assertEquals(_dir(...$args), $expected);
+	}
 }
