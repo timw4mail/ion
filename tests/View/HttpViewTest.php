@@ -63,6 +63,13 @@ class HttpViewTest extends Ion_TestCase {
 		$this->assertEquals(404, $view->response->getStatusCode());
 	}
 
+	public function testAddHeader()
+	{
+		$view = $this->view->addHeader('foo', 'bar');
+		$this->assertTrue($view->response->hasHeader('foo'));
+		$this->assertEquals(['bar'], $view->response->getHeader('foo'));
+	}
+
 	public function testSendDoubleRenderException()
 	{
 		$this->expectException(DoubleRenderException::class);

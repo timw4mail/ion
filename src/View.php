@@ -86,6 +86,19 @@ abstract class View
 	}
 
 	/**
+	 * Add an http header
+	 *
+	 * @param string $name
+	 * @param string|string[] $value
+	 * @return ViewInterface
+	 */
+	public function addHeader(string $name, $value): ViewInterface
+	{
+		$this->response = $this->response->withHeader($name, $value);
+		return $this;
+	}
+
+	/**
 	 * Set the output string
 	 *
 	 * @param mixed $string

@@ -37,7 +37,7 @@ interface ViewInterface {
 	 * @param mixed $string
 	 * @return ViewInterface
 	 */
-	public function setOutput($string): ViewInterface;
+	public function setOutput($string): self;
 
 	/**
 	 * Append additional output.
@@ -45,7 +45,7 @@ interface ViewInterface {
 	 * @param string $string
 	 * @return ViewInterface
 	 */
-	public function appendOutput(string $string): ViewInterface;
+	public function appendOutput(string $string): self;
 
 	/**
 	 * Get the current output as a string. Does not
