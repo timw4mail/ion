@@ -96,7 +96,6 @@ class HttpView extends BaseView {
 		}
 
 		$this->response = $this->response->withHeader('Content-type', "{$this->contentType};charset=utf-8")
-			->withHeader('Content-Security-Policy', "script-src 'self'")
 			->withHeader('X-Content-Type-Options', 'nosniff')
 			->withHeader('X-XSS-Protection', '1;mode=block')
 			->withHeader('X-Frame-Options', 'SAMEORIGIN');
