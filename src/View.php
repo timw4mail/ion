@@ -99,6 +99,19 @@ abstract class View
 	}
 
 	/**
+	 * Add an http2 server push header
+	 *
+	 * @param string $path - The host-relative path to the asset
+	 * @param string $type - The type of asset
+	 * @return ViewInterface
+	 */
+	public function addPushHeader(string $path, string $type): ViewInterface
+	{
+		$this->addHeader('Link', "<{$path}>; rel=preload; as={$type}");
+		return $this;
+	}
+
+	/**
 	 * Set the output string
 	 *
 	 * @param mixed $string
