@@ -48,6 +48,15 @@ interface ViewInterface {
 	public function appendOutput(string $string): self;
 
 	/**
+	 * Add an http header
+	 *
+	 * @param string $name
+	 * @param string|string[] $value
+	 * @return ViewInterface
+	 */
+	public function addHeader(string $name, $value): self;
+
+	/**
 	 * Get the current output as a string. Does not
 	 * render view or send headers.
 	 *
