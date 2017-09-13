@@ -1,8 +1,12 @@
 # Changelog
 
+## Version 2.2
+
+* Added `fuzzyCaseMatch` method to StringType
+
 ## Version 2.1
 
-* Added addHeader method to base View class
+* Added `addHeader` method to base View class
 
 ## Version 2
 
