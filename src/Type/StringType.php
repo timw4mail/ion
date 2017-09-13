@@ -23,5 +23,19 @@ use Stringy\Stringy;
  */
 class StringType extends Stringy {
 
+	/**
+	 * See if two strings match, despite being delemeted differently,
+	 * such as camelCase, PascalCase, kebab-case, or snake_case.
+	 *
+	 * @param string $strToMatch
+	 * @return boolean
+	 */
+	public function fuzzyCaseMatch(string $strToMatch): bool
+	{
+		$firstStr = StringType::create($this->str)->dasherize($this->str)->__toString();
+		$secondStr = StringType::create($strToMatch)->dasherize()->__toString();
+
+		return $firstStr === $secondStr;
+	}
 }
 // End of StringType.php
