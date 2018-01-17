@@ -4,11 +4,11 @@
  *
  * Building blocks for web development
  *
- * PHP version 7.1
+ * PHP version 7
  *
  * @package     Ion
  * @author      Timothy J. Warren <tim@timshomepage.net>
- * @copyright   2015 - 2018 Timothy J. Warren
+ * @copyright   2015 - 2017 Timothy J. Warren
  * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
  * @version     2.2.0
  * @link        https://git.timshomepage.net/timw4mail/ion
@@ -68,9 +68,9 @@ class Container implements ContainerInterface {
 	 */
 	public function get($id)
 	{
-		if ( ! is_string($id))
+		if ( ! \is_string($id))
 		{
-			throw new ContainerException("Id must be a string");
+			throw new ContainerException('Id must be a string');
 		}
 
 		if ($this->has($id))
@@ -101,7 +101,7 @@ class Container implements ContainerInterface {
 	 */
 	public function getNew($id, array $args = NULL)
 	{
-		if ( ! is_string($id))
+		if ( ! \is_string($id))
 		{
 			throw new ContainerException('Id must be a string');
 		}
@@ -109,8 +109,8 @@ class Container implements ContainerInterface {
 		if ($this->has($id))
 		{
 			// By default, call a factory with the Container
-			$args = is_array($args) ? $args : [$this];
-			$obj = call_user_func_array($this->container[$id], $args);
+			$args = \is_array($args) ? $args : [$this];
+			$obj = \call_user_func_array($this->container[$id], $args);
 
 			// Check for container interface, and apply the container to the object
 			// if applicable
@@ -194,7 +194,7 @@ class Container implements ContainerInterface {
 	 * @param  string $id The logger to retrieve
 	 * @return LoggerInterface|null
 	 */
-	public function getLogger(string $id = 'default')
+	public function getLogger(string $id = 'default'): ?LoggerInterface
 	{
 		return $this->hasLogger($id)
 			? $this->loggers[$id]
@@ -214,10 +214,10 @@ class Container implements ContainerInterface {
 		$trait_name = __NAMESPACE__ . '\\ContainerAware';
 		$interface_name = __NAMESPACE__ . '\\ContainerAwareInterface';
 
-		$uses_trait = in_array($trait_name, class_uses($obj), TRUE);
-		$implements_interface = in_array($interface_name, class_implements($obj), TRUE);
+		$uses_trait = \in_array($trait_name, class_uses($obj), TRUE);
+		$implements_interface = \in_array($interface_name, class_implements($obj), TRUE);
 
-		if ($uses_trait OR $implements_interface)
+		if ($uses_trait || $implements_interface)
 		{
 			$obj->setContainer($this);
 		}

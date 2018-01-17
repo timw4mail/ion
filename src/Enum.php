@@ -20,9 +20,6 @@ use ReflectionClass;
 
 /**
  * Class emulating an enumeration type
- *
- * @method bool isValid(mixed $key)
- * @method array getConstList()
  */
 abstract class Enum {
 
@@ -35,9 +32,9 @@ abstract class Enum {
 	{
 		static $self;
 
-		if (is_null($self))
+		if ($self === NULL)
 		{
-			$class = \get_called_class();
+			$class = static::class;
 			$self = new $class;
 		}
 
@@ -54,7 +51,7 @@ abstract class Enum {
 	public static function isValid($key): bool
 	{
 		$values = array_values(static::getConstList());
-		return in_array($key, $values);
+		return \in_array($key, $values, TRUE);
 	}
 }
 // End of Enum.php

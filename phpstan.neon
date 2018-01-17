@@ -1,0 +1,11 @@
+parameters:
+	autoload_files:
+		- %rootDir%/../../../tests/Di/ContainerTest.php
+		- %rootDir%/../../../tests/Di/ContainerAwareTest.php
+	ignoreErrors:
+		- '#Access to an undefined property Aviat\\Ion\\Tests\\[a-zA-Z0-9_]+Test::\$[a-zA-Z0-9_]+#'
+		- '#Call to an undefined method Aviat\\Ion\\Type\\ArrayType::[a-zA-Z0-9_]+\(\)#'
+		- '#Call to an undefined method Aura\\Html\\HelperLocator::[a-zA-Z0-9_]+\(\)#'
+		- '#Undefined variable: \$var#'
+	excludes_analyse:
+		- %rootDir%/tests/Di/*

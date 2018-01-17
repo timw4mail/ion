@@ -6,7 +6,7 @@ test:7:
       - php composer.phar install --ignore-platform-reqs
     image: php:7-alpine
     script:
-      - phpdbg -qrr -- vendor/bin/phpunit --coverage-text --colors=never
+      - phpdbg -qrr -- vendor/bin/phpunit -c build --coverage-text --colors=never
 
 test:7.1:
     stage: test
@@ -17,7 +17,7 @@ test:7.1:
       - php composer.phar install --ignore-platform-reqs
     image: php:7.1-alpine
     script:
-      - phpdbg -qrr -- ./vendor/bin/phpunit --coverage-text --colors=never
+      - phpdbg -qrr -- ./vendor/bin/phpunit -c build --coverage-text --colors=never
 
 test:7.2:
     stage: test
@@ -28,4 +28,4 @@ test:7.2:
       - php composer.phar install --ignore-platform-reqs
     image: php:7.2-alpine
     script:
-      - phpdbg -qrr -- ./vendor/bin/phpunit --coverage-text --colors=never
+      - phpdbg -qrr -- ./vendor/bin/phpunit -c build --coverage-text --colors=never

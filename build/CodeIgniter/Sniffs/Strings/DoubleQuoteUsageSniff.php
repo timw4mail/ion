@@ -18,6 +18,8 @@ namespace CodeIgniter\Sniffs\Strings;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
 
+use Exception;
+
 /**
  * CodeIgniter_Sniffs_Strings_DoubleQuoteUsageSniff.
  *
@@ -104,19 +106,19 @@ class VariableUsageSniff implements Sniff
 						$this->_parseVariable($strTokens, $strPtr);
 					} catch (Exception $err) {
 						$error = 'There is no variable, object nor array between curly braces. Please use the escape char for $ or {.';
-						$phpcsFile->addError($error, $stackPtr);
+						$phpcsFile->addError($error, $stackPtr, 1987234);
 					}
 					$variableFound = TRUE;
 					if ('}' !== $strTokens[$strPtr]) {
 						$error = 'There is no matching closing curly brace.';
-						$phpcsFile->addError($error, $stackPtr);
+						$phpcsFile->addError($error, $stackPtr, 987234);
 					}
 					// don't move forward, since it will be done in the main loop
 					// $strPtr++;
 				} else if (T_VARIABLE === $strToken[0]) {
 					$variableFound = TRUE;
 					$error = "Variable {$strToken[1]} in double-quoted strings should be enclosed with curly braces. Please consider {{$strToken[1]}}";
-					$phpcsFile->addError($error, $stackPtr);
+					$phpcsFile->addError($error, $stackPtr, 29087234);
 				}
 			}
 			$strPtr++;
@@ -146,7 +148,7 @@ class VariableUsageSniff implements Sniff
 			if (is_array($strToken)) {
 				if (T_VARIABLE === $strToken[0]) {
 					$error = "Variables like {$strToken[1]} should be in double-quoted strings only.";
-					$phpcsFile->addError($error, $stackPtr);
+					$phpcsFile->addError($error, $stackPtr, 12343);
 				}
 			}
 			$strPtr++;
@@ -460,5 +462,3 @@ class DoubleQuoteUsageSniff extends VariableUsageSniff
     }//end _hasSpecificSequence()
 
 }//end class
-
-?>

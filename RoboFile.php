@@ -204,7 +204,7 @@ class RoboFile extends \Robo\Tasks {
 			'tests'
 		];
 
-		$cmd_parts = ($report) ? $report_cmd_parts : $normal_cmd_parts;
+		$cmd_parts = $report ? $report_cmd_parts : $normal_cmd_parts;
 
 		$this->_run($cmd_parts);
 	}
@@ -224,7 +224,7 @@ class RoboFile extends \Robo\Tasks {
 	{
 		$this->lint();
 		$this->taskPHPUnit()
-			->configFile('phpunit.xml')
+			->configFile('build/phpunit.xml')
 			->printed(true)
 			->run();
 	}

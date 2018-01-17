@@ -167,7 +167,7 @@ class ContainerTest extends Ion_TestCase {
 			return function() {};
 		});
 
-		$this->assertInstanceOf('Aviat\Ion\Di\Container', $container);
+		$this->assertInstanceOf(Container::class, $container);
 		$this->assertInstanceOf('Aviat\Ion\Di\ContainerInterface', $container);
 
 		// The factory returns a callable

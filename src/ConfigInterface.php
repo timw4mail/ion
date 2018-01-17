@@ -44,5 +44,5 @@ interface ConfigInterface {
 	 * @param  string|array $key
 	 * @return void
 	 */
-	public function delete($key);
+	public function delete($key): void;
 }

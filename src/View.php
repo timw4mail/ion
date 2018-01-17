@@ -90,6 +90,7 @@ abstract class View
 	 *
 	 * @param string $name
 	 * @param string|string[] $value
+	 * @throws \InvalidArgumentException
 	 * @return ViewInterface
 	 */
 	public function addHeader(string $name, $value): ViewInterface
@@ -102,6 +103,8 @@ abstract class View
 	 * Set the output string
 	 *
 	 * @param mixed $string
+	 * @throws \InvalidArgumentException
+	 * @throws \RuntimeException
 	 * @return ViewInterface
 	 */
 	public function setOutput($string): ViewInterface
@@ -115,6 +118,8 @@ abstract class View
 	 * Append additional output.
 	 *
 	 * @param string $string
+	 * @throws \InvalidArgumentException
+	 * @throws \RuntimeException
 	 * @return ViewInterface
 	 */
 	public function appendOutput(string $string): ViewInterface

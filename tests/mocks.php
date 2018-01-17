@@ -4,11 +4,11 @@
  *
  * Building blocks for web development
  *
- * PHP version 7.1
+ * PHP version 7
  *
  * @package     Ion
  * @author      Timothy J. Warren <tim@timshomepage.net>
- * @copyright   2015 - 2018 Timothy J. Warren
+ * @copyright   2015 - 2017 Timothy J. Warren
  * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
  * @version     2.2.0
  * @link        https://git.timshomepage.net/timw4mail/ion
@@ -103,7 +103,7 @@ trait MockViewOutputTrait {
 		//$friend->output();
 	}*/
 
-	public function send()
+	public function send(): void
 	{
 		if ($this->hasRendered)
 		{
@@ -115,7 +115,7 @@ trait MockViewOutputTrait {
 }
 
 class TestView extends View {
-	public function send()
+	public function send(): void
 	{
 		if ($this->hasRendered)
 		{
@@ -128,7 +128,7 @@ class TestView extends View {
 }
 
 class TestHtmlView extends HtmlView {
-	protected function output()
+	protected function output(): void
 	{
 		if ($this->hasRendered)
 		{
@@ -140,7 +140,7 @@ class TestHtmlView extends HtmlView {
 }
 
 class TestHttpView extends HttpView {
-	protected function output()
+	protected function output(): void
 	{
 		if ($this->hasRendered)
 		{
@@ -154,7 +154,7 @@ class TestHttpView extends HttpView {
 class TestJsonView extends JsonView {
 	public function __destruct() {}
 
-	protected function output()
+	protected function output(): void
 	{
 		if ($this->hasRendered)
 		{

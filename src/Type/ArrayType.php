@@ -41,15 +41,15 @@ class ArrayType {
 	 */
 	protected $nativeMethods = [
 		'chunk' => 'array_chunk',
-		'pluck' => 'array_column',
-		'key_diff' => 'array_diff_key',
 		'diff' => 'array_diff',
 		'filter' => 'array_filter',
 		'flip' => 'array_flip',
 		'intersect' => 'array_intersect',
+		'key_diff' => 'array_diff_key',
 		'keys' => 'array_keys',
 		'merge' => 'array_merge',
 		'pad' => 'array_pad',
+		'pluck' => 'array_column',
 		'product' => 'array_product',
 		'random' => 'array_rand',
 		'reduce' => 'array_reduce',
@@ -97,7 +97,7 @@ class ArrayType {
 		{
 			$func = $this->nativeMethods[$method];
 			// Set the current array as the first argument of the method
-			return call_user_func($func, $this->arr, ...$args);
+			return $func($this->arr, ...$args);
 		}
 
 		// Mapping for in-place methods
@@ -167,7 +167,7 @@ class ArrayType {
 	 */
 	public function has($value, bool $strict = TRUE): bool
 	{
-		return in_array($value, $this->arr, $strict);
+		return \in_array($value, $this->arr, $strict);
 	}
 
 	/**
@@ -179,7 +179,7 @@ class ArrayType {
 	public function &get($key = NULL)
 	{
 		$value = NULL;
-		if (is_null($key))
+		if ($key === NULL)
 		{
 			$value =& $this->arr;
 		}
@@ -222,7 +222,7 @@ class ArrayType {
 
 		foreach ($key as $level)
 		{
-			if (empty($pos) OR ! is_array($pos))
+			if (empty($pos) || ! is_array($pos))
 			{
 				// Directly returning a NULL value here will
 				// result in a reference error. This isn't
@@ -253,7 +253,7 @@ class ArrayType {
 		// create the levels if they don't exist
 		foreach ($key as $level)
 		{
-			if ( ! is_array($pos) && empty($pos))
+			if ( ! \is_array($pos) && empty($pos))
 			{
 				$pos = [];
 				$pos[$level] = [];

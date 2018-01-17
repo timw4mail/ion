@@ -71,12 +71,10 @@ class ElseOnNewLineSniff implements Sniff
         $previous_non_blank_token = $tokens[$previous_non_blank_token_ptr];
         if ($previous_non_blank_token['line'] === $else_token['line']) {
             $error = '"' . $else_token['content'] . '" should be on a new line.';
-            $phpcsFile->addError($error, $stackPtr);
+            $phpcsFile->addError($error, $stackPtr, 'else on new line');
         }
 
     }//end process()
 
 
 }//end class
-
-?>

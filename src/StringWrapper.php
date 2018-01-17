@@ -27,6 +27,7 @@ trait StringWrapper {
 	 * Wrap the String in the Stringy class
 	 *
 	 * @param string $str
+	 * @throws \InvalidArgumentException
 	 * @return StringType
 	 */
 	public function string($str): StringType

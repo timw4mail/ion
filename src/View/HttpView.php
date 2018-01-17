@@ -4,11 +4,11 @@
  *
  * Building blocks for web development
  *
- * PHP version 7.1
+ * PHP version 7
  *
  * @package     Ion
  * @author      Timothy J. Warren <tim@timshomepage.net>
- * @copyright   2015 - 2018 Timothy J. Warren
+ * @copyright   2015 - 2017 Timothy J. Warren
  * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
  * @version     2.2.0
  * @link        https://git.timshomepage.net/timw4mail/ion
@@ -88,7 +88,6 @@ class HttpView extends BaseView {
 	 * Send the appropriate response
 	 *
 	 * @throws DoubleRenderException
-	 * @throws \InvalidArgumentException
 	 * @return void
 	 */
 	protected function output(): void

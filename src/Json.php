@@ -4,11 +4,11 @@
  *
  * Building blocks for web development
  *
- * PHP version 7.1
+ * PHP version 7
  *
  * @package     Ion
  * @author      Timothy J. Warren <tim@timshomepage.net>
- * @copyright   2015 - 2018 Timothy J. Warren
+ * @copyright   2015 - 2017 Timothy J. Warren
  * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
  * @version     2.2.0
  * @link        https://git.timshomepage.net/timw4mail/ion
@@ -29,6 +29,7 @@ class Json {
 	 * @param mixed $data
 	 * @param int   $options
 	 * @param int   $depth
+	 * @throws JsonException
 	 * @return string
 	 */
 	public static function encode($data, $options = 0, $depth = 512): string
@@ -45,6 +46,7 @@ class Json {
 	 * @param mixed  $data
 	 * @param int    $jsonOptions - Options to pass to json_encode
 	 * @param int    $fileOptions - Options to pass to file_get_contents
+	 * @throws JsonException
 	 * @return int
 	 */
 	public static function encodeFile(string $filename, $data, int $jsonOptions = 0, int $fileOptions = 0): int
@@ -60,18 +62,18 @@ class Json {
 	 * @param bool   $assoc
 	 * @param int    $depth
 	 * @param int    $options
+	 * @throws JsonException
 	 * @return mixed
 	 */
 	public static function decode($json, bool $assoc = TRUE, int $depth = 512, int $options = 0)
 	{
 		// Don't try to decode null
-		if (empty($json))
+		if ($json === NULL)
 		{
 			return NULL;
 		}
 
-		// cast json to string so that streams from guzzle are correctly decoded
-		$data = json_decode((string) $json, $assoc, $depth, $options);
+		$data = json_decode($json, $assoc, $depth, $options);
 
 		self::check_json_error();
 		return $data;
@@ -84,6 +86,7 @@ class Json {
 	 * @param bool   $assoc
  	 * @param int    $depth
  	 * @param int    $options
+	 * @throws JsonException
 	 * @return mixed
 	 */
 	public static function decodeFile(string $filename, bool $assoc = TRUE, int $depth = 512, int $options = 0)
@@ -96,6 +99,7 @@ class Json {
 	 * Determines whether a string is valid json
 	 *
 	 * @param  string $string
+	 * @throws \InvalidArgumentException
 	 * @return boolean
 	 */
 	public static function isJson(string $string): bool
@@ -109,7 +113,7 @@ class Json {
 	 * @throws JsonException
 	 * @return void
 	 */
-	protected static function check_json_error()
+	protected static function check_json_error(): void
 	{
 		$constant_map = [
 			JSON_ERROR_NONE => 'JSON_ERROR_NONE',
@@ -126,7 +130,7 @@ class Json {
 		$error = json_last_error();
 		$message = json_last_error_msg();
 
-		if (\JSON_ERROR_NONE !== $error)
+		if (JSON_ERROR_NONE !== $error)
 		{
 			throw new JsonException("{$constant_map[$error]} - {$message}", $error);
 		}
