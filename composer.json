@@ -11,9 +11,6 @@
 		}
 	},
 	"autoload-dev": {
-	  	"files": [
-		  	"tests/mocks.php"
-		],
 		"psr-4": {
 			"Aviat\\Ion\\Tests\\": "tests/",
 			"CodeIgniter\\": "build/CodeIgniter/"

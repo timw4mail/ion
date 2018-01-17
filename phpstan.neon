@@ -1,5 +1,6 @@
 parameters:
 	autoload_files:
+		- %rootDir%/../../../tests/mocks.php
 		- %rootDir%/../../../tests/Di/ContainerTest.php
 		- %rootDir%/../../../tests/Di/ContainerAwareTest.php
 	ignoreErrors:
