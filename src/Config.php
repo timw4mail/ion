@@ -32,7 +32,7 @@ class Config implements ConfigInterface {
 	 *
 	 * @var ArrayType
 	 */
-	protected $map = [];
+	protected $map;
 
 	/**
 	 * Constructor
@@ -53,7 +53,7 @@ class Config implements ConfigInterface {
 	 */
 	public function get($key)
 	{
-		if (is_array($key))
+		if (\is_array($key))
 		{
 			return $this->map->getDeepKey($key);
 		}
@@ -67,9 +67,9 @@ class Config implements ConfigInterface {
 	 * @param  string|array $key
 	 * @return void
 	 */
-	public function delete($key)
+	public function delete($key): void
 	{
-		if (is_array($key))
+		if (\is_array($key))
 		{
 			$this->map->setDeepKey($key, NULL);
 		}
@@ -90,7 +90,7 @@ class Config implements ConfigInterface {
 	 */
 	public function set($key, $value): ConfigInterface
 	{
-		if (is_array($key))
+		if (\is_array($key))
 		{
 			$this->map->setDeepKey($key, $value);
 		}
@@ -100,7 +100,7 @@ class Config implements ConfigInterface {
 		}
 		else
 		{
-			throw new InvalidArgumentException("Key must be integer, string, or array, and cannot be empty");
+			throw new InvalidArgumentException('Key must be integer, string, or array, and cannot be empty');
 		}
 
 		return $this;

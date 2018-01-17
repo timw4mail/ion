@@ -26,7 +26,7 @@ class HtmlView extends HttpView {
 	/**
 	 * HTML generator/escaper helper
 	 *
-	 * @var Aura\Html\HelperLocator
+	 * @var \Aura\Html\HelperLocator
 	 */
 	protected $helper;
 
@@ -62,7 +62,7 @@ class HtmlView extends HttpView {
 		$data['container'] = $this->container;
 
 		ob_start();
-		extract($data);
+		extract($data, \EXTR_SKIP);
 		include_once $path;
 		$buffer = ob_get_contents();
 		ob_end_clean();

@@ -42,7 +42,7 @@
 		"coverage": "phpdbg -qrr -- vendor/bin/phpunit -c build",
 		"build": "robo build",
 		"docs": "cd build && ../vendor/bin/phpdox && cd ..",
-		"phpstan": "phpstan analyse src tests",
+		"phpstan": "phpstan analyse -l 7 src ",
 		"test": "phpunit"
 	},
 	"suggest": {

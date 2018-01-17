@@ -28,12 +28,13 @@ class StringType extends Stringy {
 	 * such as camelCase, PascalCase, kebab-case, or snake_case.
 	 *
 	 * @param string $strToMatch
+	 * @throws \InvalidArgumentException
 	 * @return boolean
 	 */
 	public function fuzzyCaseMatch(string $strToMatch): bool
 	{
-		$firstStr = StringType::create($this->str)->dasherize($this->str)->__toString();
-		$secondStr = StringType::create($strToMatch)->dasherize()->__toString();
+		$firstStr = self::create($this->str)->dasherize()->__toString();
+		$secondStr = self::create($strToMatch)->dasherize()->__toString();
 
 		return $firstStr === $secondStr;
 	}

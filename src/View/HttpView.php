@@ -38,14 +38,15 @@ class HttpView extends BaseView {
 	 *
 	 * @param string $url
 	 * @param int    $code
+	 * @throws \InvalidArgumentException
 	 * @return void
 	 */
-	public function redirect(string $url, int $code)
+	public function redirect(string $url, int $code): void
 	{
 		ob_start();
-		$message = $this->response->getReasonPhrase($code);
 		$this->setStatusCode($code);
-		$this->response->withHeader('Location', $url);
+		$message = $this->response->getReasonPhrase();
+		$this->response = $this->response->withHeader('Location', $url);
 
 		if (PHP_SAPI !== 'cli')
 		{
@@ -75,9 +76,10 @@ class HttpView extends BaseView {
 	 * any attempt to call again will result in a DoubleRenderException.
 	 *
 	 * @throws DoubleRenderException
+	 * @throws \InvalidArgumentException
 	 * @return void
 	 */
-	public function send()
+	public function send(): void
 	{
 		$this->output();
 	}
@@ -86,22 +88,23 @@ class HttpView extends BaseView {
 	 * Send the appropriate response
 	 *
 	 * @throws DoubleRenderException
+	 * @throws \InvalidArgumentException
 	 * @return void
 	 */
-	protected function output()
+	protected function output(): void
 	{
 		if ($this->hasRendered)
 		{
 			throw new DoubleRenderException();
 		}
 
-		$this->response = $this->response->withHeader('Content-type', "{$this->contentType};charset=utf-8")
+		$this->response = $this->response
+			->withHeader('Content-type', "{$this->contentType};charset=utf-8")
 			->withHeader('X-Content-Type-Options', 'nosniff')
 			->withHeader('X-XSS-Protection', '1;mode=block')
 			->withHeader('X-Frame-Options', 'SAMEORIGIN');
 
-		$sender = new SapiEmitter($this->response);
-		$sender->emit($this->response);
+		(new SapiEmitter())->emit($this->response);
 
 		$this->hasRendered = TRUE;
 	}

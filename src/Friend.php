@@ -29,27 +29,27 @@ class Friend {
 
 	/**
 	 * Object to create a friend of
-	 * @var object
+	 * @var mixed
 	 */
 	private $_friend_;
 
 	/**
 	 * Reflection class of the object
-	 * @var object
+	 * @var \ReflectionClass
 	 */
 	private $_reflect_;
 
 	/**
 	 * Create a friend object
 	 *
-	 * @param object $obj
+	 * @param mixed $obj
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct($obj)
 	{
-		if ( ! is_object($obj))
+		if ( ! \is_object($obj))
 		{
-			throw new InvalidArgumentException("Friend must be an object");
+			throw new InvalidArgumentException('Friend must be an object');
 		}
 
 		$this->_friend_ = $obj;
@@ -64,13 +64,28 @@ class Friend {
 	 */
 	public function __get(string $key)
 	{
-		if ($this->_reflect_->hasProperty($key))
+		if ($this->__isset($key))
 		{
 			$property = $this->_get_property($key);
-			return $property->getValue($this->_friend_);
+
+			if ($property !== NULL)
+			{
+				return $property->getValue($this->_friend_);
+			}
 		}
 
 		return NULL;
+	}
+
+	/**
+	 * See if a property exists on the friend
+	 *
+	 * @param string $name
+	 * @return bool
+	 */
+	public function __isset(string $name): bool
+	{
+		return $this->_reflect_->hasProperty($name);
 	}
 
 	/**
@@ -82,10 +97,14 @@ class Friend {
 	 */
 	public function __set(string $key, $value)
 	{
-		if ($this->_reflect_->hasProperty($key))
+		if ($this->__isset($key))
 		{
 			$property = $this->_get_property($key);
-			$property->setValue($this->_friend_, $value);
+
+			if ($property !== NULL)
+			{
+				$property->setValue($this->_friend_, $value);
+			}
 		}
 	}
 
@@ -115,7 +134,7 @@ class Friend {
 	 * @param  string $name
 	 * @return ReflectionProperty|null
 	 */
-	private function _get_property(string $name)
+	private function _get_property(string $name): ?ReflectionProperty
 	{
 		try
 		{
