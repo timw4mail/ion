@@ -35,11 +35,14 @@ class JsonView extends HttpView {
 	 * Set the output string
 	 *
 	 * @param mixed $string
+	 * @throws \InvalidArgumentException
+	 * @throws \RuntimeException
+	 * @throws \Aviat\Ion\JsonException
 	 * @return ViewInterface
 	 */
 	public function setOutput($string): ViewInterface
 	{
-		if ( ! is_string($string))
+		if ( ! \is_string($string))
 		{
 			$string = Json::encode($string);
 		}

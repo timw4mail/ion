@@ -62,6 +62,7 @@ class HttpView extends BaseView {
 	 * Set the status code of the request
 	 *
 	 * @param int $code
+	 * @throws \InvalidArgumentException
 	 * @return HttpView
 	 */
 	public function setStatusCode(int $code): HttpView
@@ -88,6 +89,7 @@ class HttpView extends BaseView {
 	 * Send the appropriate response
 	 *
 	 * @throws DoubleRenderException
+	 * @throws \InvalidArgumentException
 	 * @return void
 	 */
 	protected function output(): void

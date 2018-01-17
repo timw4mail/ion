@@ -24,7 +24,7 @@ use Stringy\Stringy;
 class StringType extends Stringy {
 
 	/**
-	 * See if two strings match, despite being delemeted differently,
+	 * See if two strings match, despite being delimited differently,
 	 * such as camelCase, PascalCase, kebab-case, or snake_case.
 	 *
 	 * @param string $strToMatch

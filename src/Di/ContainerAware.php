@@ -32,9 +32,9 @@ trait ContainerAware {
 	 * Set the container for the current object
 	 *
 	 * @param ContainerInterface $container
-	 * @return $this
+	 * @return self
 	 */
-	public function setContainer(ContainerInterface $container)
+	public function setContainer(ContainerInterface $container): self
 	{
 		$this->container = $container;
 		return $this;
