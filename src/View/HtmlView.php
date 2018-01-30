@@ -10,7 +10,7 @@
  * @author      Timothy J. Warren <tim@timshomepage.net>
  * @copyright   2015 - 2018 Timothy J. Warren
  * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version     2.3.0
+ * @version     2.2.0
  * @link        https://git.timshomepage.net/timw4mail/ion
  */
 
@@ -62,7 +62,7 @@ class HtmlView extends HttpView {
 		$data['container'] = $this->container;
 
 		ob_start();
-		extract($data, \EXTR_SKIP);
+		extract($data, \EXTR_OVERWRITE);
 		include_once $path;
 		$buffer = ob_get_contents();
 		ob_end_clean();
