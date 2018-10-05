@@ -4,10 +4,8 @@ install:
   - composer install
 
 php:
-  - 7
   - 7.1
   - 7.2
-  - hhvm
   - nightly
 
 script:
