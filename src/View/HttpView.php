@@ -16,7 +16,8 @@
 
 namespace Aviat\Ion\View;
 
-use Zend\Diactoros\Response\SapiEmitter;
+use Zend\Diactoros\Response;
+use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 use Aviat\Ion\Exception\DoubleRenderException;
 use Aviat\Ion\View as BaseView;
@@ -38,24 +39,13 @@ class HttpView extends BaseView {
 	 *
 	 * @param string $url
 	 * @param int    $code
+	 * @param array $headers
 	 * @throws \InvalidArgumentException
 	 * @return void
 	 */
-	public function redirect(string $url, int $code): void
+	public function redirect(string $url, int $code = 302, array $headers = []): void
 	{
-		ob_start();
-		$this->setStatusCode($code);
-		$message = $this->response->getReasonPhrase();
-		$this->response = $this->response->withHeader('Location', $url);
-
-		if (PHP_SAPI !== 'cli')
-		{
-			header("HTTP/1.1 ${code} ${message}");
-			header("Location: {$url}");
-		}
-
-		$this->hasRendered = TRUE;
-		ob_end_clean();
+		$this->response = new Response\RedirectResponse($url, $code, $headers);
 	}
 
 	/**
