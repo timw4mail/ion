@@ -75,6 +75,7 @@ interface ContainerInterface {
 
 	/**
 	 * Determine whether a logger channel is registered
+	 *
 	 * @param  string $id The logger channel
 	 * @return boolean
 	 */

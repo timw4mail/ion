@@ -114,11 +114,28 @@ class ArrayType {
 	/**
 	 * Does the passed key exist in the current array?
 	 *
-	 * @param int|string $key
+	 * @param int|string|array $key
 	 * @return bool
 	 */
 	public function hasKey($key): bool
 	{
+		if (\is_array($key))
+		{
+			$pos =& $this->arr;
+
+			foreach($key as $level)
+			{
+				if ( ! array_key_exists($level, $pos))
+				{
+					return FALSE;
+				}
+
+				$pos =& $pos[$level];
+			}
+
+			return TRUE;
+		}
+
 		return array_key_exists($key, $this->arr);
 	}
 

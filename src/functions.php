@@ -20,7 +20,7 @@ namespace Aviat\Ion;
  * Joins paths together. Variadic to take an
  * arbitrary number of arguments
  *
- * @param string[] ...$args
+ * @param string ...$args
  * @return string
  */
 function _dir(string ...$args): string

@@ -18,8 +18,10 @@ namespace Aviat\Ion\Transformer;
 
 use Aviat\Ion\StringWrapper;
 
+use BadMethodCallException;
+
 /**
- * Base class for data trasformation
+ * Base class for data transformation
  */
 abstract class AbstractTransformer implements TransformerInterface {
 
@@ -36,13 +38,32 @@ abstract class AbstractTransformer implements TransformerInterface {
 	/**
 	 * Transform a set of structures
 	 *
-	 * @param  array|object $collection
+	 * @param  iterable $collection
 	 * @return array
 	 */
-	public function transformCollection($collection): array
+	public function transformCollection(iterable $collection): array
 	{
 		$list = (array)$collection;
 		return array_map([$this, 'transform'], $list);
+	}
+
+	/**
+	 * Untransform a set of structures
+	 *
+	 * Requires an 'untransform' method in the extending class
+	 *
+	 * @param iterable $collection
+	 * @return array
+	 */
+	public function untransformCollection(iterable $collection): array
+	{
+		if ( ! method_exists($this, 'untransform'))
+		{
+			throw new BadMethodCallException('untransform() method does not exist.');
+		}
+
+		$list = (array)$collection;
+		return array_map([$this, 'untransform'], $list);
 	}
 }
 // End of AbstractTransformer.php

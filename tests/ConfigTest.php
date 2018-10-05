@@ -25,8 +25,22 @@ class ConfigTest extends Ion_TestCase {
 		$this->config = new Config([
 			'foo' => 'bar',
 			'asset_path' => '/assets',
-			'bar' => 'baz'
+			'bar' => 'baz',
+			'a' => [
+				'b' => [
+					'c' => TRUE,
+				],
+			],
 		]);
+	}
+
+	public function testConfigHas()
+	{
+		$this->assertTrue($this->config->has('foo'));
+		$this->assertTrue($this->config->has(['a', 'b', 'c']));
+
+		$this->assertFalse($this->config->has('baz'));
+		$this->assertFalse($this->config->has(['c', 'b', 'a']));
 	}
 
 	public function testConfigGet()
@@ -48,7 +62,6 @@ class ConfigTest extends Ion_TestCase {
 		$this->assertEquals('great', $apple['sauce']['is'], "Config value not set correctly");
 
 		$this->assertEquals('great', $this->config->get(['apple', 'sauce', 'is']), "Array argument get for config failed.");
-
 	}
 
 	public function testConfigBadSet()

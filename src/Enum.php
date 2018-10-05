@@ -27,6 +27,7 @@ abstract class Enum {
 	 * Return the list of constant values for the Enum
 	 *
 	 * @return array
+	 * @throws \ReflectionException
 	 */
 	public static function getConstList(): array
 	{
@@ -47,6 +48,7 @@ abstract class Enum {
 	 *
 	 * @param  mixed $key
 	 * @return boolean
+	 * @throws \ReflectionException
 	 */
 	public static function isValid($key): bool
 	{

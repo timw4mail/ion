@@ -211,8 +211,8 @@ class Container implements ContainerInterface {
 	 */
 	private function applyContainer($obj)
 	{
-		$trait_name = __NAMESPACE__ . '\\ContainerAware';
-		$interface_name = __NAMESPACE__ . '\\ContainerAwareInterface';
+		$trait_name = ContainerAware::class;
+		$interface_name = ContainerAwareInterface::class;
 
 		$uses_trait = \in_array($trait_name, class_uses($obj), TRUE);
 		$implements_interface = \in_array($interface_name, class_implements($obj), TRUE);

@@ -81,6 +81,13 @@ class TestTransformer extends AbstractTransformer {
 	}
 }
 
+class TestTransformerUntransform extends TestTransformer {
+	public function untransform($item)
+	{
+		return (array)$item;
+	}
+}
+
 trait MockViewOutputTrait {
 	/*protected function output() {
 		$reflect = new ReflectionClass($this);

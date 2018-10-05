@@ -45,13 +45,24 @@ class Config implements ConfigInterface {
 	}
 
 	/**
+	 * Does the config item exist?
+	 *
+	 * @param string|int|array $key
+	 * @return bool
+	 */
+	public function has($key): bool
+	{
+		return $this->map->hasKey($key);
+	}
+
+	/**
 	 * Get a config value
 	 *
-	 * @param array|string $key
+	 * @param array|string|null $key
 	 * @return mixed
 	 * @throws ConfigException
 	 */
-	public function get($key)
+	public function get($key = NULL)
 	{
 		if (\is_array($key))
 		{

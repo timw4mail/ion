@@ -17,16 +17,18 @@
 namespace Aviat\Ion\Tests\Transformer;
 
 use Aviat\Ion\Tests\Ion_TestCase;
-use Aviat\Ion\Tests\TestTransformer;
+use Aviat\Ion\Tests\{TestTransformer, TestTransformerUntransform};
 
 class AbstractTransformerTest extends Ion_TestCase {
 
 	protected $transformer;
+	protected $untransformer;
 
 
 	public function setUp()
 	{
 		$this->transformer = new TestTransformer();
+		$this->untransformer = new TestTransformerUntransform();
 	}
 
 	public function dataTransformCollection()
@@ -87,6 +89,36 @@ class AbstractTransformerTest extends Ion_TestCase {
 		];
 	}
 
+	public function dataUnTransformCollection()
+	{
+		return [
+			'object' => [
+				'original' => [
+					(object)['Comedy', 'Romance', 'School', 'Harem'],
+					(object)['Action', 'Comedy', 'Magic', 'Fantasy', 'Mahou Shoujo'],
+					(object)['Comedy', 'Sci-Fi']
+				],
+				'expected' => [
+					['Comedy', 'Romance', 'School', 'Harem'],
+					['Action', 'Comedy', 'Magic', 'Fantasy', 'Mahou Shoujo'],
+					['Comedy', 'Sci-Fi']
+				]
+			],
+			'array' => [
+				'original' => [
+					['Comedy', 'Romance', 'School', 'Harem'],
+					['Action', 'Comedy', 'Magic', 'Fantasy', 'Mahou Shoujo'],
+					['Comedy', 'Sci-Fi']
+				],
+				'expected' => [
+					['Comedy', 'Romance', 'School', 'Harem'],
+					['Action', 'Comedy', 'Magic', 'Fantasy', 'Mahou Shoujo'],
+					['Comedy', 'Sci-Fi']
+				]
+			]
+		];
+	}
+
 	public function testTransform()
 	{
 		$data = $this->dataTransformCollection();
@@ -104,5 +136,23 @@ class AbstractTransformerTest extends Ion_TestCase {
 	{
 		$actual = $this->transformer->transformCollection($original);
 		$this->assertEquals($expected, $actual);
+	}
+
+	/**
+	 * @dataProvider dataUnTransformCollection
+	 */
+	public function testUntransformCollection($original, $expected)
+	{
+		$actual = $this->untransformer->untransformCollection($original);
+		$this->assertEquals($expected, $actual);
+	}
+
+	/**
+	 * @dataProvider dataUnTransformCollection
+	 */
+	public function testUntransformCollectionWithException($original, $expected)
+	{
+		$this->expectException(\BadMethodCallException::class);
+		$this->transformer->untransformCollection($original);
 	}
 }

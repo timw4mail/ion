@@ -169,6 +169,29 @@ class ArrayTypeTest extends Ion_TestCase {
 		$this->assertFalse($obj->hasKey('b'));
 	}
 
+	public function testHasKeyArray()
+	{
+		$obj = $this->arr([
+			'foo' => [
+				'bar' => [
+					'baz' => [
+						'foobar' => NULL,
+						'one' => 1,
+					],
+				],
+			],
+		]);
+
+		$this->assertTrue($obj->hasKey(['foo']));
+		$this->assertTrue($obj->hasKey(['foo', 'bar']));
+		$this->assertTrue($obj->hasKey(['foo', 'bar', 'baz']));
+		$this->assertTrue($obj->hasKey(['foo', 'bar', 'baz', 'one']));
+		$this->assertTrue($obj->hasKey(['foo', 'bar', 'baz', 'foobar']));
+
+		$this->assertFalse($obj->hasKey(['foo', 'baz']));
+		$this->assertFalse($obj->hasKey(['bar', 'baz']));
+	}
+
 	public function testHas()
 	{
 		$obj = $this->arr([1, 2, 6, 8, 11]);

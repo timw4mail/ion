@@ -44,6 +44,7 @@ class Friend {
 	 *
 	 * @param mixed $obj
 	 * @throws InvalidArgumentException
+	 * @throws \ReflectionException
 	 */
 	public function __construct($obj)
 	{
@@ -115,6 +116,7 @@ class Friend {
 	 * @param  array  $args
 	 * @return mixed
 	 * @throws BadMethodCallException
+	 * @throws \ReflectionException
 	 */
 	public function __call(string $method, array $args)
 	{

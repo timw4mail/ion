@@ -21,9 +21,10 @@
 		"aura/html": "2.*",
 		"container-interop/container-interop": "1.*",
 		"danielstjules/stringy": "^3.0.0",
+		"ext-json": "*",
 		"psr/http-message": "~1.0",
 		"psr/log": "~1.0",
-		"zendframework/zend-diactoros": "^1.4.0"
+		"zendframework/zend-diactoros": "^2.0.0"
 	},
 	"require-dev": {
 	  	"aura/session": "^2.1.0",
@@ -33,9 +34,9 @@
 		"phploc/phploc": "^4.0",
 		"phpmd/phpmd": "^2.4",
 		"phpstan/phpstan": "^0.9.1",
-		"phpunit/phpunit": "^6.0",
-		"robmorgan/phinx": "^0.9.2",
-		"sebastian/phpcpd": "^3.0",
+		"phpunit/phpunit": "^6.5.13",
+		"robmorgan/phinx": "^0.10.6",
+		"sebastian/phpcpd": "^3.0.1",
 		"squizlabs/php_codesniffer": "^3.0.0",
 		"theseer/phpdox": "^0.11.0"
 	},
@@ -44,7 +45,7 @@
 		"build": "robo build",
 		"docs": "cd build && ../vendor/bin/phpdox && cd ..",
 		"phpstan": "phpstan analyse -l 7 -c phpstan.neon src tests",
-		"test": "phpunit"
+		"test": "phpunit -c phpunit.dist.xml"
 	},
 	"suggest": {
 		"monolog/monolog": "Provides implementation of psr/log"
