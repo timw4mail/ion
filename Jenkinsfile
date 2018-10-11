@@ -14,7 +14,7 @@ pipeline {
 				sh 'apk add --no-cache php7-phpdbg'
 				sh 'curl -sS https://getcomposer.org/installer | php'
 				sh 'php composer.phar install --ignore-platform-reqs'
-				sh 'php composer.phar run-script coverage -- --coverage-text'
+				sh 'php composer.phar run-script coverage -- --coverage-text --colors=never'
 			}
 		}
 		stage('PHP 7.1') {
@@ -30,7 +30,7 @@ pipeline {
 				sh 'apk add --no-cache php7-phpdbg'
 				sh 'curl -sS https://getcomposer.org/installer | php'
 				sh 'php composer.phar install --ignore-platform-reqs'
-				sh 'php composer.phar run-script coverage -- --coverage-text'
+				sh 'php composer.phar run-script coverage -- --coverage-text --colors=never'
 			}
 		}
 		stage('PHP 7.2') {
@@ -46,7 +46,7 @@ pipeline {
 				sh 'apk add --no-cache php7-phpdbg'
 				sh 'curl -sS https://getcomposer.org/installer | php'
 				sh 'php composer.phar install --ignore-platform-reqs'
-				sh 'php composer.phar run-script coverage -- --coverage-text'
+				sh 'php composer.phar run-script coverage -- --coverage-text --colors=never'
 			}
 		}
 	}
