@@ -20,8 +20,7 @@ use Aviat\Ion\Config;
 
 class ConfigTest extends Ion_TestCase {
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		$this->config = new Config([
 			'foo' => 'bar',
 			'asset_path' => '/assets',

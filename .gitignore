@@ -30,3 +30,4 @@ build/humbuglog.txt
 phpdoc/
 tests/test_data/json_write.json
 tests/test_data/sessions/
+.phpunit.result.cache

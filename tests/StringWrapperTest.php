@@ -24,8 +24,7 @@ class StringWrapperTest extends TestCase {
 
 	protected $wrapper;
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		$this->wrapper = new class {
 			use StringWrapper;
 		};

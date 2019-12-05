@@ -26,8 +26,7 @@ class EnumTest extends Ion_TestCase {
 		'FOOBAR' => 'baz'
 	];
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		parent::setUp();
 		$this->enum = new TestEnum();
 	}

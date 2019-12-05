@@ -33,8 +33,7 @@ class ContainerAwareTest extends Ion_TestCase {
 
 	protected $aware;
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		$this->container = new Container();
 		$this->aware = new Aware($this->container);
 	}

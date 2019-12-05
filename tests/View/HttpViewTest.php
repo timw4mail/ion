@@ -26,8 +26,7 @@ class HttpViewTest extends Ion_TestCase {
 	protected $view;
 	protected $friend;
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		parent::setUp();
 		$this->view = new TestHttpView($this->container);
 		$this->friend = new Friend($this->view);

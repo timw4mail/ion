@@ -22,8 +22,7 @@ use Aviat\Ion\Tests\Ion_TestCase;
 class ArrayTypeTest extends Ion_TestCase {
 	use ArrayWrapper;
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		parent::setUp();
 	}
 

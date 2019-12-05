@@ -1,54 +1,54 @@
 {
-	"name": "aviat/ion",
-	"description": "Basic PHP Framework",
-	"license":"MIT",
-	"autoload": {
-		"files": [
-			"src/functions.php"
-		],
-		"psr-4": {
-			"Aviat\\Ion\\": "src/"
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"Aviat\\Ion\\Tests\\": "tests/",
-			"CodeIgniter\\": "build/CodeIgniter/"
-		}
-	},
-	"require": {
-		"aviat/query": "^2.5",
-		"aura/html": "2.*",
-		"container-interop/container-interop": "1.*",
-		"danielstjules/stringy": "^3.0.0",
-		"ext-json": "*",
-		"psr/http-message": "~1.0",
-		"psr/log": "~1.0",
-		"zendframework/zend-diactoros": "^2.0.0",
-		"zendframework/zend-httphandlerrunner": "^1.0"
-	},
-	"require-dev": {
-	  	"aura/session": "^2.1.0",
-		"consolidation/robo": "^1.1.0",
-		"monolog/monolog": "1.*",
-		"pdepend/pdepend": "^2.2",
-		"phploc/phploc": "^4.0",
-		"phpmd/phpmd": "^2.4",
-		"phpstan/phpstan": "^0.9.1",
-		"phpunit/phpunit": "^6.5.13",
-		"robmorgan/phinx": "^0.10.6",
-		"sebastian/phpcpd": "^3.0.1",
-		"squizlabs/php_codesniffer": "^3.0.0",
-		"theseer/phpdox": "^0.11.0"
-	},
-	"scripts": {
-		"coverage": "phpdbg -qrr -- vendor/bin/phpunit -c build",
-		"build": "robo build",
-		"docs": "cd build && ../vendor/bin/phpdox && cd ..",
-		"phpstan": "phpstan analyse -l 7 -c phpstan.neon src tests",
-		"test": "phpunit -c phpunit.dist.xml"
-	},
-	"suggest": {
-		"monolog/monolog": "Provides implementation of psr/log"
+  "name": "aviat/ion",
+  "description": "Basic PHP Framework",
+  "license": "MIT",
+  "autoload": {
+	"files": [
+	  "src/functions.php"
+	],
+	"psr-4": {
+	  "Aviat\\Ion\\": "src/"
 	}
+  },
+  "autoload-dev": {
+	"psr-4": {
+	  "Aviat\\Ion\\Tests\\": "tests/",
+	  "CodeIgniter\\": "build/CodeIgniter/"
+	}
+  },
+  "require": {
+	"aviat/query": "^2.5",
+	"aura/html": "2.*",
+	"danielstjules/stringy": "^3.0.0",
+	"ext-json": "*",
+	"psr/http-message": "~1.0",
+	"psr/log": "~1.0",
+	"zendframework/zend-diactoros": "^2.0.0",
+	"zendframework/zend-httphandlerrunner": "^1.0"
+  },
+  "require-dev": {
+	"aura/session": "^2.1.0",
+	"consolidation/robo": "^2.0.0",
+	"monolog/monolog": "^2.0.1",
+	"pdepend/pdepend": "^2.2",
+	"phploc/phploc": "^5.0",
+	"phpmd/phpmd": "^2.4",
+	"phpstan/phpstan": "^0.12.0",
+	"phpunit/phpunit": "^8.4.3",
+	"roave/security-advisories": "dev-master",
+	"robmorgan/phinx": "^0.10.6",
+	"sebastian/phpcpd": "^4.1.0",
+	"squizlabs/php_codesniffer": "^3.0.0",
+	"theseer/phpdox": "^0.12.0"
+  },
+  "scripts": {
+	"coverage": "phpdbg -qrr -- vendor/bin/phpunit -c build",
+	"build": "robo build",
+	"docs": "cd build && ../vendor/bin/phpdox && cd ..",
+	"phpstan": "phpstan analyse -l 7 -c phpstan.neon src tests",
+	"test": "phpunit -c phpunit.dist.xml"
+  },
+  "suggest": {
+	"monolog/monolog": "Provides implementation of psr/log"
+  }
 }

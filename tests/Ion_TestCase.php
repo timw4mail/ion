@@ -18,11 +18,8 @@ namespace Aviat\Ion\Tests;
 
 use function Aviat\Ion\_dir;
 
-use Aura\Web\WebFactory;
-use Aviat\Ion\Json;
 use PHPUnit\Framework\TestCase;
 use Zend\Diactoros\ServerRequestFactory;
-use Zend\Diactoros\Response as HttpResponse;
 
 define('ROOT_DIR', realpath(__DIR__ . '/../') . '/');
 define('SRC_DIR', ROOT_DIR . 'src/');
@@ -34,10 +31,10 @@ define('TEST_VIEW_DIR', __DIR__ . '/test_views');
  */
 class Ion_TestCase extends TestCase {
 	// Test directory constants
-	const ROOT_DIR = ROOT_DIR;
-	const SRC_DIR = SRC_DIR;
-	const TEST_DATA_DIR = TEST_DATA_DIR;
-	const TEST_VIEW_DIR = TEST_VIEW_DIR;
+	public const ROOT_DIR = ROOT_DIR;
+	public const SRC_DIR = SRC_DIR;
+	public const TEST_DATA_DIR = TEST_DATA_DIR;
+	public const TEST_VIEW_DIR = TEST_VIEW_DIR;
 
 	protected $container;
 	protected static $staticContainer;
@@ -51,7 +48,7 @@ class Ion_TestCase extends TestCase {
 		self::$session_handler = $session_handler;
 	}*/
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 
@@ -100,7 +97,7 @@ class Ion_TestCase extends TestCase {
 		// Set up DI container
 		$di = require('di.php');
 		$container = $di($config_array);
-		$container->set('session-handler', function() {
+		$container->set('session-handler', static function() {
 			// Use mock session handler
 			$session_handler = new TestSessionHandler();
 			session_set_save_handler($session_handler, TRUE);
@@ -116,7 +113,7 @@ class Ion_TestCase extends TestCase {
 	 * @param array $supers
 	 * @return void
 	 */
-	public function setSuperGlobals(array $supers = [])
+	public function setSuperGlobals(array $supers = []): void
 	{
 		$default = [
 			'_SERVER' => $_SERVER,
@@ -127,7 +124,7 @@ class Ion_TestCase extends TestCase {
 		];
 
 		$request = call_user_func_array(
-			['Zend\Diactoros\ServerRequestFactory', 'fromGlobals'],
+			[ServerRequestFactory::class, 'fromGlobals'],
 			array_merge($default, $supers)
 		);
 		$this->container->setInstance('request', $request);

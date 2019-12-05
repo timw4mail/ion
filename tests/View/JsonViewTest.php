@@ -21,8 +21,7 @@ use Aviat\Ion\Tests\TestJsonView;
 
 class JsonViewTest extends HttpViewTest {
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		parent::setUp();
 
 		$this->view = new TestJsonView($this->container);

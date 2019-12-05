@@ -24,8 +24,7 @@ class HtmlViewTest extends HttpViewTest {
 
 	protected $template_path;
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		parent::setUp();
 		$this->view = new TestHtmlView($this->container);
 	}

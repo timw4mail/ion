@@ -25,8 +25,7 @@ class AbstractTransformerTest extends Ion_TestCase {
 	protected $untransformer;
 
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		$this->transformer = new TestTransformer();
 		$this->untransformer = new TestTransformerUntransform();
 	}

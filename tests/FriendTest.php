@@ -21,8 +21,7 @@ use Aviat\Ion\Tests\FriendTestClass;
 
 class FriendTest extends Ion_TestCase {
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		parent::setUp();
 		$obj = new FriendTestClass();
 		$this->friend = new Friend($obj);

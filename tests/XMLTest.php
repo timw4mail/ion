@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 /**
- * Ion
+ * Hummingbird Anime List Client
  *
- * Building blocks for web development
+ * An API client for Kitsu to manage anime and manga watch lists
  *
  * PHP version 7.1
  *
- * @package     Ion
+ * @package     HummingbirdAnimeClient
  * @author      Timothy J. Warren <tim@timshomepage.net>
- * @copyright   2015 - 2018 Timothy J. Warren
+ * @copyright   2015 - 2018  Timothy J. Warren
  * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version     2.4.1
- * @link        https://git.timshomepage.net/timw4mail/ion
+ * @version     4.1
+ * @link        https://git.timshomepage.net/timw4mail/HummingBirdAnimeClient
  */
 
 namespace Aviat\Ion\Tests;
@@ -26,8 +26,7 @@ class XMLTest extends TestCase {
 	protected $object;
 	protected $array;
 
-	public function setUp()
-	{
+	public function setUp(): void	{
 		$this->xml = file_get_contents(__DIR__ . '/test_data/XML/xmlTestFile.xml');
 		$this->expectedXml = file_get_contents(__DIR__ . '/test_data/XML/minifiedXmlTestFile.xml');
 

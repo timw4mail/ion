@@ -21,6 +21,8 @@ use Aviat\Ion\Di\Exception\ContainerException;
 use Aviat\Ion\Tests\Ion_TestCase;
 use Monolog\Logger;
 use Monolog\Handler\{TestHandler, NullHandler};
+use Aviat\Ion\Di\ContainerInterface;
+use Aviat\Ion\Di\Exception\NotFoundException;
 
 class FooTest {
 
@@ -37,27 +39,27 @@ class FooTest2 {
 
 class ContainerTest extends Ion_TestCase {
 
-	public function setUp()
+	public function setUp(): void
 	{
 		$this->container = new Container();
 	}
 
-	public function dataGetWithException()
+	public function dataGetWithException(): array
 	{
 		return [
 			'Bad index type: number' => [
 				'id' => 42,
-				'exception' => 'Aviat\Ion\Di\Exception\ContainerException',
+				'exception' => ContainerException::class,
 				'message' => 'Id must be a string'
 			],
 			'Bad index type: array' => [
 				'id' => [],
-				'exception' => 'Aviat\Ion\Di\Exception\ContainerException',
+				'exception' => ContainerException::class,
 				'message' => 'Id must be a string'
 			],
 			'Non-existent id' => [
 				'id' => 'foo',
-				'exception' => 'Aviat\Ion\Di\Exception\NotFoundException',
+				'exception' => NotFoundException::class,
 				'message' => "Item 'foo' does not exist in container."
 			]
 		];
@@ -66,7 +68,7 @@ class ContainerTest extends Ion_TestCase {
 	/**
 	 * @dataProvider dataGetWithException
 	 */
-	public function testGetWithException($id, $exception, $message)
+	public function testGetWithException($id, $exception, $message): void
 	{
 		try
 		{
@@ -82,24 +84,24 @@ class ContainerTest extends Ion_TestCase {
 	/**
 	 * @dataProvider dataGetWithException
 	 */
-	public function testGetNewWithException($id, $exception, $message)
+	public function testGetNewWithException($id, $exception, $message): void
 	{
 		$this->expectException($exception);
 		$this->expectExceptionMessage($message);
 		$this->container->getNew($id);
 	}
 
-	public function dataSetInstanceWithException()
+	public function dataSetInstanceWithException(): array
 	{
 		return [
 			'Non-existent id' => [
 				'id' => 'foo',
-				'exception' => 'Aviat\Ion\Di\Exception\NotFoundException',
+				'exception' => NotFoundException::class,
 				'message' => "Factory 'foo' does not exist in container. Set that first.",
 			],
 			'Non-existent id 2' => [
 				'id' => 'foobarbaz',
-				'exception' => 'Aviat\Ion\Di\Exception\NotFoundException',
+				'exception' => NotFoundException::class,
 				'message' => "Factory 'foobarbaz' does not exist in container. Set that first.",
 			],
 		];
@@ -108,7 +110,7 @@ class ContainerTest extends Ion_TestCase {
 	/**
 	 * @dataProvider dataSetInstanceWithException
 	 */
-	public function testSetInstanceWithException($id, $exception, $message)
+	public function testSetInstanceWithException($id, $exception, $message): void
 	{
 		try
 		{
@@ -121,21 +123,21 @@ class ContainerTest extends Ion_TestCase {
 		}
 	}
 
-	public function testGetNew()
+	public function testGetNew(): void
 	{
-		$this->container->set('footest', function($item) {
+		$this->container->set('footest', static function($item) {
 			return new FooTest($item);
 		});
 
 		// Check that the item is the container, if called without arguments
 		$footest1 = $this->container->getNew('footest');
-		$this->assertInstanceOf('Aviat\Ion\Di\ContainerInterface', $footest1->item);
+		$this->assertInstanceOf(ContainerInterface::class, $footest1->item);
 
 		$footest2 = $this->container->getNew('footest', ['Test String']);
 		$this->assertEquals('Test String', $footest2->item);
 	}
 
-	public function testSetContainerInInstance()
+	public function testSetContainerInInstance(): void
 	{
 		$this->container->set('footest2', function() {
 			return new FooTest2();
@@ -145,36 +147,36 @@ class ContainerTest extends Ion_TestCase {
 		$this->assertEquals($this->container, $footest2->getContainer());
 	}
 
-	public function testGetNewReturnCallable()
+	public function testGetNewReturnCallable(): void
 	{
-		$this->container->set('footest', function($item) {
-			return function() use ($item) {
+		$this->container->set('footest', static function($item) {
+			return static function() use ($item) {
 				return $item;
 			};
 		});
 
 		// Check that the item is the container, if called without arguments
 		$footest1 = $this->container->getNew('footest');
-		$this->assertInstanceOf('Aviat\Ion\Di\ContainerInterface', $footest1());
+		$this->assertInstanceOf(ContainerInterface::class, $footest1());
 
 		$footest2 = $this->container->getNew('footest', ['Test String']);
 		$this->assertEquals('Test String', $footest2());
 	}
 
-	public function testGetSet()
+	public function testGetSet(): void
 	{
-		$container = $this->container->set('foo', function() {
-			return function() {};
+		$container = $this->container->set('foo', static function() {
+			return static function() {};
 		});
 
 		$this->assertInstanceOf(Container::class, $container);
-		$this->assertInstanceOf('Aviat\Ion\Di\ContainerInterface', $container);
+		$this->assertInstanceOf(ContainerInterface::class, $container);
 
 		// The factory returns a callable
 		$this->assertTrue(is_callable($container->get('foo')));
 	}
 
-	public function testLoggerMethods()
+	public function testLoggerMethods(): void
 	{
 		// Does the container have the default logger?
 		$this->assertFalse($this->container->hasLogger());
@@ -189,8 +191,8 @@ class ContainerTest extends Ion_TestCase {
 		$container = $this->container->setLogger($logger1);
 		$container2 = $this->container->setLogger($logger2, 'test');
 
-		$this->assertInstanceOf('Aviat\Ion\Di\ContainerInterface', $container);
-		$this->assertInstanceOf('Aviat\Ion\Di\Container', $container2);
+		$this->assertInstanceOf(ContainerInterface::class, $container);
+		$this->assertInstanceOf(Container::class, $container2);
 
 		$this->assertEquals($logger1, $this->container->getLogger('default'));
 		$this->assertEquals($logger2, $this->container->getLogger('test'));
