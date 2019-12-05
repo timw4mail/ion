@@ -33,12 +33,13 @@ class ContainerAwareTest extends Ion_TestCase {
 
 	protected $aware;
 
-	public function setUp(): void	{
+	public function setUp(): void
+	{
 		$this->container = new Container();
 		$this->aware = new Aware($this->container);
 	}
 
-	public function testContainerAwareTrait()
+	public function testContainerAwareTrait(): void
 	{
 		// The container was set in setup
 		// check that the get method returns the same

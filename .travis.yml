@@ -4,7 +4,6 @@ install:
   - composer install
 
 php:
-  - 7.1
   - 7.2
   - 7.3
   - 7.4
@@ -15,7 +14,7 @@ script:
   - vendor/bin/phpunit -c build
 
 services:
-  - redis
+  - redis-server
 
 matrix:
   allow_failures:

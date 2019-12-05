@@ -20,7 +20,10 @@ use Aviat\Ion\Config;
 
 class ConfigTest extends Ion_TestCase {
 
-	public function setUp(): void	{
+	protected $config;
+
+	public function setUp(): void
+	{
 		$this->config = new Config([
 			'foo' => 'bar',
 			'asset_path' => '/assets',
@@ -33,7 +36,7 @@ class ConfigTest extends Ion_TestCase {
 		]);
 	}
 
-	public function testConfigHas()
+	public function testConfigHas(): void
 	{
 		$this->assertTrue($this->config->has('foo'));
 		$this->assertTrue($this->config->has(['a', 'b', 'c']));
@@ -42,7 +45,7 @@ class ConfigTest extends Ion_TestCase {
 		$this->assertFalse($this->config->has(['c', 'b', 'a']));
 	}
 
-	public function testConfigGet()
+	public function testConfigGet(): void
 	{
 		$this->assertEquals('bar', $this->config->get('foo'));
 		$this->assertEquals('baz', $this->config->get('bar'));
@@ -50,26 +53,26 @@ class ConfigTest extends Ion_TestCase {
 		$this->assertNull($this->config->get(['apple', 'sauce', 'is']));
 	}
 
-	public function testConfigSet()
+	public function testConfigSet(): void
 	{
 		$ret = $this->config->set('foo', 'foobar');
-		$this->assertInstanceOf('Aviat\Ion\Config', $ret);
+		$this->assertInstanceOf(Config::class, $ret);
 		$this->assertEquals('foobar', $this->config->get('foo'));
 
 		$this->config->set(['apple', 'sauce', 'is'], 'great');
 		$apple = $this->config->get('apple');
-		$this->assertEquals('great', $apple['sauce']['is'], "Config value not set correctly");
+		$this->assertEquals('great', $apple['sauce']['is'], 'Config value not set correctly');
 
 		$this->assertEquals('great', $this->config->get(['apple', 'sauce', 'is']), "Array argument get for config failed.");
 	}
 
-	public function testConfigBadSet()
+	public function testConfigBadSet(): void
 	{
 		$this->expectException('InvalidArgumentException');
 		$this->config->set(NULL, FALSE);
 	}
 
-	public function dataConfigDelete()
+	public function dataConfigDelete(): array
 	{
 		return [
 			'top level delete' => [
@@ -129,7 +132,7 @@ class ConfigTest extends Ion_TestCase {
 	/**
 	 * @dataProvider dataConfigDelete
 	 */
-	public function testConfigDelete($key, $assertKeys)
+	public function testConfigDelete($key, array $assertKeys): void
 	{
 		$config = new Config([]);
 		$config->set(['apple', 'sauce', 'is'], 'great');
@@ -141,7 +144,7 @@ class ConfigTest extends Ion_TestCase {
 		}
 	}
 
-	public function testGetNonExistentConfigItem()
+	public function testGetNonExistentConfigItem(): void
 	{
 		$this->assertNull($this->config->get('foobar'));
 	}
