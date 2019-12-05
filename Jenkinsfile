@@ -11,7 +11,7 @@ pipeline {
 			steps {
 				sh 'apk add --no-cache php7-phpdbg'
 				sh 'curl -sS https://getcomposer.org/installer | php'
-				sh 'php composer.phar install
+				sh 'php composer.phar install'
 				sh 'php composer.phar run-script coverage -- --coverage-text --colors=never'
 			}
 		}
@@ -25,7 +25,7 @@ pipeline {
 			steps {
 				sh 'apk add --no-cache php7-phpdbg'
 				sh 'curl -sS https://getcomposer.org/installer | php'
-				sh 'php composer.phar install
+				sh 'php composer.phar install'
 				sh 'php composer.phar run-script coverage -- --coverage-text --colors=never'
 			}
 		}
@@ -39,7 +39,7 @@ pipeline {
 			steps {
 				sh 'apk add --no-cache php7-phpdbg'
 				sh 'curl -sS https://getcomposer.org/installer | php'
-				sh 'php composer.phar install
+				sh 'php composer.phar install'
 				sh 'php composer.phar run-script coverage -- --coverage-text --colors=never'
 			}
 		}
