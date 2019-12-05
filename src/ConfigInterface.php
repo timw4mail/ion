@@ -44,7 +44,7 @@ interface ConfigInterface {
 	 * @throws \InvalidArgumentException
 	 * @return ConfigInterface
 	 */
-	public function set($key, $value): ConfigInterface;
+	public function set($key, $value): self;
 
 	/**
 	 * Remove a config value

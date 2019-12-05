@@ -50,6 +50,8 @@ abstract class View
 	 * Constructor
 	 *
 	 * @param ContainerInterface $container
+	 * @throws Di\Exception\ContainerException
+	 * @throws Di\Exception\NotFoundException
 	 */
 	public function __construct(ContainerInterface $container)
 	{
@@ -135,7 +137,7 @@ abstract class View
 	 */
 	public function getOutput(): string
 	{
-		return $this->response->getBody()->__toString();
+		return (string)$this->response->getBody();
 	}
 }
 // End of View.php

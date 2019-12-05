@@ -16,7 +16,10 @@
 
 namespace Aviat\Ion\View;
 
+use Aura\Html\HelperLocator;
 use Aviat\Ion\Di\ContainerInterface;
+use Aviat\Ion\Di\Exception\ContainerException;
+use Aviat\Ion\Di\Exception\NotFoundException;
 
 /**
  * View class for outputting HTML
@@ -26,7 +29,7 @@ class HtmlView extends HttpView {
 	/**
 	 * HTML generator/escaper helper
 	 *
-	 * @var \Aura\Html\HelperLocator
+	 * @var HelperLocator
 	 */
 	protected $helper;
 
@@ -41,6 +44,8 @@ class HtmlView extends HttpView {
 	 * Create the Html View
 	 *
 	 * @param ContainerInterface $container
+	 * @throws ContainerException
+	 * @throws NotFoundException
 	 */
 	public function __construct(ContainerInterface $container)
 	{
@@ -64,8 +69,7 @@ class HtmlView extends HttpView {
 		ob_start();
 		extract($data, \EXTR_OVERWRITE);
 		include_once $path;
-		$buffer = ob_get_contents();
-		ob_end_clean();
+		$buffer = ob_get_clean();
 
 
 		// Very basic html minify, that won't affect content between html tags

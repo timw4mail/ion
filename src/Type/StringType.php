@@ -33,8 +33,8 @@ class StringType extends Stringy {
 	 */
 	public function fuzzyCaseMatch(string $strToMatch): bool
 	{
-		$firstStr = self::create($this->str)->dasherize()->__toString();
-		$secondStr = self::create($strToMatch)->dasherize()->__toString();
+		$firstStr = (string)self::create($this->str)->dasherize();
+		$secondStr = (string)self::create($strToMatch)->dasherize();
 
 		return $firstStr === $secondStr;
 	}

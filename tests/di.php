@@ -11,16 +11,16 @@ use Aviat\Ion\Di\Container;
 // -----------------------------------------------------------------------------
 // Setup DI container
 // -----------------------------------------------------------------------------
-return function(array $config_array = []) {
+return static function(array $config_array = []) {
 	$container = new Container();
 
-	$container->set('config', function() {
+	$container->set('config', static function() {
 		return new Config([]);
 	});
 
 	$container->setInstance('config', new Config($config_array));
 
-	$container->set('request', function() {
+	$container->set('request', static function() {
 		return ServerRequestFactory::fromGlobals(
 			$_SERVER,
 			$_GET,
@@ -30,17 +30,17 @@ return function(array $config_array = []) {
 		);
 	});
 
-	$container->set('response', function() {
+	$container->set('response', static function() {
 		return new Response();
 	});
 
 	// Create session Object
-	$container->set('session', function() {
+	$container->set('session', static function() {
 		return (new SessionFactory())->newInstance($_COOKIE);
 	});
 
 	// Create Html helper Object
-	$container->set('html-helper', function() {
+	$container->set('html-helper', static function() {
 		return (new HelperLocatorFactory)->newInstance();
 	});
 

@@ -17,6 +17,7 @@
 namespace Aviat\Ion\View;
 
 use Aviat\Ion\Json;
+use Aviat\Ion\JsonException;
 use Aviat\Ion\ViewInterface;
 
 /**
@@ -37,7 +38,7 @@ class JsonView extends HttpView {
 	 * @param mixed $string
 	 * @throws \InvalidArgumentException
 	 * @throws \RuntimeException
-	 * @throws \Aviat\Ion\JsonException
+	 * @throws JsonException
 	 * @return ViewInterface
 	 */
 	public function setOutput($string): ViewInterface
